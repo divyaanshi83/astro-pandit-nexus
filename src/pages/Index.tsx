@@ -5,6 +5,7 @@ import FestivalsSection from "@/components/FestivalsSection";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
+import ConsultationPopup from "@/components/ConsultationPopup";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Testimonials />
       <Footer />
       <FloatingButtons />
+      <ConsultationPopup />
     </div>
   );
 };

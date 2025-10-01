@@ -9,6 +9,10 @@ import KundliMilan from "./pages/KundliMilan";
 import Festivals from "./pages/Festivals";
 import Store from "./pages/Store";
 import Panchang from "./pages/Panchang";
+import Eclipse from "./pages/Eclipse";
+import NameCorrection from "./pages/NameCorrection";
+import Calculators from "./pages/Calculators";
+import ShubhMuhurat from "./pages/ShubhMuhurat";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -25,9 +29,13 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/horoscope" element={<Horoscope />} />
           <Route path="/kundli-milan" element={<KundliMilan />} />
+          <Route path="/calculators" element={<Calculators />} />
           <Route path="/festivals" element={<Festivals />} />
-          <Route path="/store" element={<Store />} />
+          <Route path="/shubh-muhurat" element={<ShubhMuhurat />} />
           <Route path="/panchang" element={<Panchang />} />
+          <Route path="/eclipse" element={<Eclipse />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/name-correction" element={<NameCorrection />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Heart, ShoppingBag, Sparkles, BookOpen, Sun } from "lucide-react";
+import { Calendar, Heart, ShoppingBag, Sparkles, Sun, Calculator, Zap, Edit } from "lucide-react";
 
 const services = [
   {
@@ -18,31 +18,52 @@ const services = [
     color: "text-secondary"
   },
   {
-    title: "Festivals",
-    description: "Puja dates & significance",
-    icon: Sparkles,
-    link: "/festivals",
+    title: "Astrology Calculators",
+    description: "25+ free calculators",
+    icon: Calculator,
+    link: "/calculators",
     color: "text-accent"
   },
   {
-    title: "Panchang",
-    description: "Daily Hindu calendar",
-    icon: Calendar,
-    link: "/panchang",
+    title: "Festivals & Pujas",
+    description: "Dates & rituals",
+    icon: Sparkles,
+    link: "/festivals",
     color: "text-primary"
   },
   {
-    title: "Yantras Store",
-    description: "Authentic spiritual products",
-    icon: ShoppingBag,
-    link: "/store",
+    title: "Shubh Muhurat 2025",
+    description: "Auspicious timings",
+    icon: Calendar,
+    link: "/shubh-muhurat",
     color: "text-secondary"
   },
   {
-    title: "About Me",
-    description: "Know your astrologer",
-    icon: BookOpen,
-    link: "/about",
+    title: "Daily Panchang",
+    description: "Hindu calendar & timings",
+    icon: Calendar,
+    link: "/panchang",
+    color: "text-accent"
+  },
+  {
+    title: "Solar & Lunar Eclipse",
+    description: "Eclipse timings & rituals",
+    icon: Zap,
+    link: "/eclipse",
+    color: "text-primary"
+  },
+  {
+    title: "Name Correction",
+    description: "Numerology-based service",
+    icon: Edit,
+    link: "/name-correction",
+    color: "text-secondary"
+  },
+  {
+    title: "Yantras Store",
+    description: "Spiritual products",
+    icon: ShoppingBag,
+    link: "/store",
     color: "text-accent"
   }
 ];

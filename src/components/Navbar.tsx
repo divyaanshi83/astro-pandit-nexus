@@ -15,9 +15,13 @@ const Navbar = () => {
       home: "Home",
       horoscope: "Horoscope",
       kundli: "Kundli Milan",
+      calculators: "Calculators",
       festivals: "Festivals",
-      store: "Store",
+      muhurat: "Muhurat",
       panchang: "Panchang",
+      eclipse: "Eclipse",
+      store: "Store",
+      nameCorrection: "Name Correction",
       about: "About",
       contact: "Contact"
     },
@@ -25,9 +29,13 @@ const Navbar = () => {
       home: "होम",
       horoscope: "राशिफल",
       kundli: "कुंडली मिलान",
+      calculators: "कैलकुलेटर",
       festivals: "त्यौहार",
-      store: "स्टोर",
+      muhurat: "मुहूर्त",
       panchang: "पंचांग",
+      eclipse: "ग्रहण",
+      store: "स्टोर",
+      nameCorrection: "नाम सुधार",
       about: "परिचय",
       contact: "संपर्क"
     }
@@ -45,7 +53,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4 text-sm">
             <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
               {t.home}
             </Link>
@@ -55,14 +63,23 @@ const Navbar = () => {
             <Link to="/kundli-milan" className="text-foreground hover:text-primary transition-colors font-medium">
               {t.kundli}
             </Link>
+            <Link to="/calculators" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t.calculators}
+            </Link>
             <Link to="/festivals" className="text-foreground hover:text-primary transition-colors font-medium">
               {t.festivals}
             </Link>
-            <Link to="/store" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.store}
+            <Link to="/shubh-muhurat" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t.muhurat}
             </Link>
             <Link to="/panchang" className="text-foreground hover:text-primary transition-colors font-medium">
               {t.panchang}
+            </Link>
+            <Link to="/eclipse" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t.eclipse}
+            </Link>
+            <Link to="/store" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t.store}
             </Link>
             <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               {t.about}
