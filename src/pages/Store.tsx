@@ -5,16 +5,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const yantras = [
-  { name: "Sri Yantra", description: "For wealth, prosperity and spiritual growth", price: "₹1,999" },
-  { name: "Kuber Yantra", description: "For financial abundance and success", price: "₹999" },
-  { name: "Lakshmi Yantra", description: "For goddess Lakshmi's blessings", price: "₹899" },
-  { name: "Ganesh Yantra", description: "For removing obstacles", price: "₹799" },
-  { name: "Hanuman Yantra", description: "For strength and protection", price: "₹799" },
-  { name: "Durga Yantra", description: "For protection and victory", price: "₹999" },
-  { name: "Mahamrityunjaya Yantra", description: "For health and longevity", price: "₹1,299" },
-  { name: "Saraswati Yantra", description: "For knowledge and wisdom", price: "₹799" },
-  { name: "Shiva Yantra", description: "For spiritual awakening", price: "₹1,199" },
-  { name: "Navagraha Yantra", description: "For planetary harmony", price: "₹1,499" }
+  { name: "Sri Yantra", description: "For wealth, prosperity and spiritual growth", price: "₹1,999", image: "/images/yantras/sri-yantra.jpg" },
+  { name: "Kuber Yantra", description: "For financial abundance and success", price: "₹999", image: "/images/yantras/kuber-yantra.jpg" },
+  { name: "Lakshmi Yantra", description: "For goddess Lakshmi's blessings", price: "₹899", image: "/images/yantras/lakshmi-yantra.jpg" },
+  { name: "Ganesh Yantra", description: "For removing obstacles", price: "₹799", image: "/images/yantras/ganesh-yantra.jpg" },
+  { name: "Hanuman Yantra", description: "For strength and protection", price: "₹799", image: "/images/yantras/hanuman-yantra.jpg" },
+  { name: "Durga Yantra", description: "For protection and victory", price: "₹999", image: "/images/yantras/durga-yantra.jpg" },
+  { name: "Mahamrityunjaya Yantra", description: "For health and longevity", price: "₹1,299", image: "/images/yantras/mahamrityunjaya-yantra.jpg" },
+  { name: "Saraswati Yantra", description: "For knowledge and wisdom", price: "₹799", image: "/images/yantras/saraswati-yantra.jpg" },
+  { name: "Shiva Yantra", description: "For spiritual awakening", price: "₹1,199", image: "/images/yantras/shiva-yantra.jpg" },
+  { name: "Navagraha Yantra", description: "For planetary harmony", price: "₹1,499", image: "/images/yantras/navagraha-yantra.jpg" }
 ];
 
 const Store = () => {
@@ -37,8 +37,12 @@ const Store = () => {
             {yantras.map((yantra) => (
               <Card key={yantra.name} className="hover:shadow-lg transition-all hover:-translate-y-1">
                 <CardContent className="p-6">
-                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg mb-4 flex items-center justify-center">
-                    <div className="text-6xl">🕉️</div>
+                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={yantra.image} 
+                      alt={yantra.name} 
+                      className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
                   <h3 className="text-xl font-playfair font-semibold text-foreground mb-2">
                     {yantra.name}
