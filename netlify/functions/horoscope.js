@@ -1,4 +1,3 @@
-// netlify/functions/horoscope.js
 export async function handler(event) {
   try {
     const { sign, day = "today" } = event.queryStringParameters;
@@ -6,6 +5,9 @@ export async function handler(event) {
     if (!sign) {
       return {
         statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ success: false, error: "Missing zodiac sign" }),
       };
     }
@@ -14,21 +16,21 @@ export async function handler(event) {
     if (!OPENAI_API_KEY) {
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ success: false, error: "Missing OpenAI API key" }),
       };
     }
 
-    // ✨ More structured and styled prompt
     const prompt = `
 Write a ${day} horoscope for the zodiac sign "${sign}".
-Use this exact structure with emojis and bullet points:
-
-♈ ${sign.toUpperCase()} — ${day.toUpperCase()} Horoscope
+Use this structure:
 
 🌟 Overview:
-(2–3 lines summarizing the mood, energy, and opportunities of the day)
+(2–3 lines)
 
-💼 What to Do (Career):
+💼 What to Do:
 • (Point 1)
 • (Point 2)
 
@@ -37,9 +39,7 @@ Use this exact structure with emojis and bullet points:
 • (Point 2)
 
 ❤️ Love Tip:
-(1–2 lines of advice about love or relationships)
-
-Make it sound positive, mystical, and encouraging.
+(1–2 lines)
 `;
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -63,6 +63,9 @@ Make it sound positive, mystical, and encouraging.
       console.error("JSON parse error:", err, text);
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({
           success: false,
           error: "Invalid JSON from OpenAI",
@@ -75,6 +78,9 @@ Make it sound positive, mystical, and encouraging.
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         success: true,
         sign,
@@ -86,6 +92,9 @@ Make it sound positive, mystical, and encouraging.
     console.error("Server error fetching horoscope:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         success: false,
         error: "Server error fetching horoscope",

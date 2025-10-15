@@ -16,12 +16,23 @@ const HoroscopeTemplate = ({ sign }: HoroscopeTemplateProps) => {
       setLoading(true);
       setError(null);
 
+      // ✅ Always use relative path — Netlify Dev automatically proxies it correctly
       const response = await fetch(
         `/.netlify/functions/horoscope?sign=${sign.toLowerCase()}&day=${day}`
       );
 
-      const result = await response.json();
+      // ✅ Get raw response text (for debugging malformed JSON)
+      const text = await response.text();
 
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (jsonErr) {
+        console.error("❌ JSON parse failed:", jsonErr, "\nRaw response:", text);
+        throw new Error("Invalid JSON returned from the server.");
+      }
+
+      // ✅ Handle server or API errors cleanly
       if (!response.ok || !result.success) {
         console.error("Horoscope API error:", result);
         throw new Error(result.error || `Failed (${response.status})`);
