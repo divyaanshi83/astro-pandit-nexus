@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
 
 const zodiacSigns = [
   { name: "Aries", symbol: "♈", dates: "Mar 21 - Apr 19" },
@@ -16,66 +17,78 @@ const zodiacSigns = [
   { name: "Sagittarius", symbol: "♐", dates: "Nov 22 - Dec 21" },
   { name: "Capricorn", symbol: "♑", dates: "Dec 22 - Jan 19" },
   { name: "Aquarius", symbol: "♒", dates: "Jan 20 - Feb 18" },
-  { name: "Pisces", symbol: "♓", dates: "Feb 19 - Mar 20" }
+  { name: "Pisces", symbol: "♓", dates: "Feb 19 - Mar 20" },
 ];
 
 const Horoscope = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main className="py-16">
         <div className="container mx-auto px-4">
+          {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-4">
               Your Daily Horoscope
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get personalized daily and weekly predictions for your zodiac sign
+              Choose your zodiac sign below to view your personalized prediction
             </p>
           </div>
 
+          {/* Tabs for Daily / Weekly */}
           <Tabs defaultValue="daily" className="w-full">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
               <TabsTrigger value="daily">Daily</TabsTrigger>
               <TabsTrigger value="weekly">Weekly</TabsTrigger>
             </TabsList>
-            
+
+            {/* Daily Horoscope List */}
             <TabsContent value="daily">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {zodiacSigns.map((sign) => (
-                  <Card key={sign.name} className="hover:shadow-lg transition-all hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="text-center mb-4">
-                        <div className="text-5xl mb-2">{sign.symbol}</div>
-                        <h3 className="text-xl font-playfair font-semibold text-foreground">
+                  <Link
+                    key={sign.name}
+                    to={`/horoscope/${sign.name.toLowerCase()}`} // 👈 Dynamic route
+                  >
+                    <Card className="hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
+                      <CardContent className="p-6 text-center">
+                        <div className="text-5xl mb-3">{sign.symbol}</div>
+                        <h3 className="text-xl font-playfair font-semibold mb-1 text-foreground">
                           {sign.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground">{sign.dates}</p>
-                      </div>
-                      <p className="text-muted-foreground">
-                        Today brings opportunities for growth. Focus on your goals and maintain positive energy.
-                      </p>
-                    </CardContent>
-                  </Card>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          {sign.dates}
+                        </p>
+                        <p className="text-muted-foreground">
+                          Click to view today’s horoscope →
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </TabsContent>
-            
+
+            {/* Weekly Horoscope (Placeholder for now) */}
             <TabsContent value="weekly">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {zodiacSigns.map((sign) => (
-                  <Card key={sign.name} className="hover:shadow-lg transition-all hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="text-center mb-4">
-                        <div className="text-5xl mb-2">{sign.symbol}</div>
-                        <h3 className="text-xl font-playfair font-semibold text-foreground">
-                          {sign.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">{sign.dates}</p>
-                      </div>
+                  <Card
+                    key={sign.name}
+                    className="hover:shadow-lg transition-all hover:-translate-y-1"
+                  >
+                    <CardContent className="p-6 text-center">
+                      <div className="text-5xl mb-3">{sign.symbol}</div>
+                      <h3 className="text-xl font-playfair font-semibold mb-1 text-foreground">
+                        {sign.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {sign.dates}
+                      </p>
                       <p className="text-muted-foreground">
-                        This week focuses on personal development and relationships. Stay balanced and trust your intuition.
+                        This week brings growth, introspection, and balance.
                       </p>
                     </CardContent>
                   </Card>
