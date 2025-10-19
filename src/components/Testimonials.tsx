@@ -21,6 +21,30 @@ const testimonials = [
     text: "Very knowledgeable and helpful. The puja recommendations brought positive changes in my life."
   },
   {
+    name: "Sunil Chaudhary",
+    location: "Goa",
+    rating: 5,
+    text: "The kundli matching service was excellent. We are happily married now. Thank you Pandit ji!"
+  },
+  {
+    name: "Aditya Mittal",
+    location: "Jammu Kashmir",
+    rating: 5,
+    text: "Very knowledgeable and helpful. The puja recommendations brought positive changes in my life."
+  },
+  {
+    name: "Abhishek Goyal",
+    location: "Surat",
+    rating: 5,
+    text: "The kundli matching service was excellent. We are happily married now. Thank you Pandit ji!"
+  },
+  {
+    name: "Amit Verma",
+    location: "Bangalore",
+    rating: 5,
+    text: "Very knowledgeable and helpful. The puja recommendations brought positive changes in my life."
+  },
+  {
     name: "Sunita Patel",
     location: "Ahmedabad",
     rating: 5,

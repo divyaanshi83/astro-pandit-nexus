@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
@@ -6,172 +6,222 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
-const initialDoshList = [
-  "Toilet in Northeast (Ishan Kon)",
-  "Kitchen in Northeast",
-  "Bedroom in Southeast",
-  "Staircase in Northeast",
-  "Main Door in South",
-  "Toilet under staircase",
-  "Kitchen under staircase",
-  "Bedroom in Southwest",
-  "Septic tank in Northeast",
-  "Temple in Bedroom",
-  "Mirror facing bed",
-  "Toilet near Pooja room",
-  "Toilet in center (Brahmasthan)",
-  "Missing Northeast corner",
-  "Overhead water tank in Northeast",
+const statesAndCities: Record<string, string[]> = {
+  "Uttar Pradesh": ["Lucknow", "Varanasi", "Kanpur", "Ayodhya", "Agra"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+  "Delhi": ["New Delhi", "Dwarka", "Rohini", "Saket"],
+  "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Ajmer"],
+  "Tamil Nadu": ["Chennai", "Madurai", "Coimbatore", "Tiruchirappalli"],
+  "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi"],
+  "West Bengal": ["Kolkata", "Howrah", "Darjeeling", "Siliguri"],
+};
+
+const countries = [
+  "India",
+  "United States",
+  "United Kingdom",
+  "Canada",
+  "Australia",
+  "Nepal",
+  "Sri Lanka",
+  "Singapore",
+  "United Arab Emirates",
 ];
 
-const VaastuDosh = () => {
-  const [selectedDosh, setSelectedDosh] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const Numerology = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    gender: "",
+    dob: "",
+    birthTime: "",
+    country: "",
+    state: "",
+    city: "",
+  });
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const filteredList = initialDoshList.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  useEffect(() => {
-    if (!selectedDosh) return;
-    const fetchRemedy = async () => {
-      setLoading(true);
-      setResult(null);
-      try {
-        const response = await fetch("/.netlify/functions/vaastuRemedy", {
-          method: "POST",
-          body: JSON.stringify({ issue: selectedDosh }),
-        });
-        const data = await response.json();
-        setResult(data);
-      } catch (err) {
-        console.error("❌ Vaastu remedy API error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchRemedy();
-  }, [selectedDosh]);
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch("/.netlify/functions/numerology", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      setResult(data);
+    } catch (error) {
+      console.error("❌ Numerology API error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
       <main className="py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h1 className="text-5xl font-extrabold text-center text-primary mb-3">
-            🏠 Vaastu Dosh & Remedies
-          </h1>
-          <p className="text-center text-lg text-muted-foreground mb-10">
-            Discover the causes, astrological cures, and sacred mantras to restore harmony in your home.
+        <div className="container mx-auto px-4 max-w-4xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl font-extrabold text-center mb-6 text-primary font-playfair"
+          >
+            🔢 Numerology Insights
+          </motion.h1>
+
+          <p className="text-center text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+            Discover your <span className="text-primary font-semibold">Lucky Number</span>,{" "}
+            <span className="text-primary font-semibold">Lucky Color</span>,{" "}
+            <span className="text-primary font-semibold">Bhagyank</span>, and{" "}
+            <span className="text-primary font-semibold">Divine Guidance</span> —
+            all revealed through your birth details.
           </p>
 
-          {/* 🔍 Search bar */}
-          <div className="flex justify-center mb-8">
-            <input
-              type="text"
-              placeholder="🔍 Search Vaastu Dosh (e.g., Toilet in Northeast)..."
-              className="w-full md:w-2/3 p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          <Card className="mb-10 shadow-lg">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold mb-4 text-foreground">
+                🌟 Why Numerology Matters
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Numerology reveals the hidden meaning of numbers that shape your destiny.
+                It uncovers your <strong>life path</strong>, guides you toward auspicious
+                <strong> colors, days, and deities</strong>, and helps you live in harmony
+                with the cosmic vibrations of the universe.
+              </p>
+            </CardContent>
+          </Card>
 
-          {/* Dosh selection dropdown */}
-          <div className="flex justify-center mb-10">
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-5 bg-card p-8 rounded-2xl shadow-xl"
+          >
+            <h3 className="text-2xl font-semibold mb-6 text-center text-primary">
+              🧘‍♂️ Enter Your Birth Details
+            </h3>
+
+            <input
+              name="name"
+              placeholder="Full Name"
+              className="w-full p-3 border rounded-md"
+              onChange={handleChange}
+              required
+            />
+
+            {/* Gender Dropdown */}
             <select
-              className="w-full md:w-2/3 p-3 border rounded-lg shadow-sm"
-              value={selectedDosh}
-              onChange={(e) => setSelectedDosh(e.target.value)}
+              name="gender"
+              className="w-full p-3 border rounded-md"
+              onChange={handleChange}
+              required
             >
-              <option value="">Select a Vaastu Dosh</option>
-              {filteredList.map((issue) => (
-                <option key={issue} value={issue}>
-                  {issue}
-                </option>
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+
+            <input
+              name="dob"
+              type="date"
+              className="w-full p-3 border rounded-md"
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              name="birthTime"
+              type="time"
+              className="w-full p-3 border rounded-md"
+              onChange={handleChange}
+            />
+
+            {/* Country Dropdown */}
+            <select
+              name="country"
+              className="w-full p-3 border rounded-md"
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Country</option>
+              {countries.map((country) => (
+                <option key={country}>{country}</option>
               ))}
             </select>
-          </div>
 
-          {/* Show Result */}
-          {loading && (
-            <p className="text-center text-muted-foreground animate-pulse">
-              Fetching Vaastu remedies for "{selectedDosh}"...
-            </p>
-          )}
+            {/* Show State/City if India */}
+            {formData.country === "India" && (
+              <>
+                <select
+                  name="state"
+                  className="w-full p-3 border rounded-md"
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select State</option>
+                  {Object.keys(statesAndCities).map((state) => (
+                    <option key={state}>{state}</option>
+                  ))}
+                </select>
+
+                {formData.state && (
+                  <select
+                    name="city"
+                    className="w-full p-3 border rounded-md"
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select City</option>
+                    {statesAndCities[formData.state]?.map((city) => (
+                      <option key={city}>{city}</option>
+                    ))}
+                  </select>
+                )}
+              </>
+            )}
+
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full text-lg py-3"
+            >
+              {loading ? "Calculating..." : "🔮 Get My Numerology Report"}
+            </Button>
+          </motion.form>
 
           {result && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="p-8 mb-10 shadow-lg bg-card">
-                <CardContent>
-                  <h2 className="text-3xl font-bold mb-4 text-foreground">
-                    🧭 {selectedDosh}
-                  </h2>
-
-                  <div className="space-y-5 text-lg text-muted-foreground">
-                    <p>
-                      <strong>🚫 Cause:</strong> {result.cause}
-                    </p>
-                    <p>
-                      <strong>🔍 Effect:</strong> {result.effect}
-                    </p>
-
-                    <div>
-                      <h3 className="text-2xl font-semibold text-primary mb-2">
-                        🕉️ Remedies, Puja & Yantras
-                      </h3>
-                      <ul className="list-disc ml-6 space-y-1">
-                        {result.remedies?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-semibold text-purple-600 mb-2">
-                        🌙 Astrological & Mantra Solutions
-                      </h3>
-                      <ul className="list-disc ml-6 space-y-1">
-                        {result.astrology?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-semibold text-red-600 mb-2">
-                        ⚠️ Avoid These
-                      </h3>
-                      <ul className="list-disc ml-6 space-y-1">
-                        {result.avoid?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-10 text-center">
-                    <Button className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-6 py-3 rounded-lg">
-                      📞 Book Full Vaastu Consultation – ₹11,000
-                    </Button>
-                  </div>
+              <Card className="mt-12 shadow-lg">
+                <CardContent className="p-8">
+                  <h3 className="text-3xl font-bold mb-4 text-foreground">
+                    ✨ Your Numerology Reading
+                  </h3>
+                  <pre className="whitespace-pre-wrap text-muted-foreground text-lg leading-relaxed">
+                    {result.analysis}
+                  </pre>
                 </CardContent>
               </Card>
             </motion.div>
           )}
         </div>
       </main>
-
       <Footer />
       <FloatingButtons />
     </div>
   );
 };
 
-export default VaastuDosh;
+export default Numerology;

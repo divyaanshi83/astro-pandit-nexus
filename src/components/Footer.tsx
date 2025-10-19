@@ -37,7 +37,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://instagram.com/panditashubahuguna" 
+                href="https://www.instagram.com/astro_pandit_ashu_bahuguna/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -48,14 +48,25 @@ const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://linkedin.com/in/panditashubahuguna" 
+                href="https://in.pinterest.com/panditashubahuguna/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="LinkedIn"
+                aria-label="Pinterest"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path d="M12 0C5.37 0 0 5.372 0 12c0 4.938 3.045 9.144 7.376 10.937-.102-.929-.195-2.355.04-3.369.213-.91 1.369-5.804 1.369-5.804s-.349-.698-.349-1.731c0-1.622.941-2.834 2.112-2.834 1 0 1.48.751 1.48 1.652 0 1.007-.642 2.511-.973 3.905-.277 1.176.587 2.136 1.741 2.136 2.09 0 3.698-2.205 3.698-5.382 0-2.811-2.021-4.782-4.905-4.782-3.341 0-5.307 2.507-5.307 5.097 0 1.009.388 2.095.873 2.685a.35.35 0 0 1 .08.336c-.088.372-.286 1.176-.325 1.339-.05.209-.163.255-.378.153-1.406-.654-2.282-2.705-2.282-4.353 0-3.55 2.583-6.814 7.452-6.814 3.914 0 6.952 2.79 6.952 6.514 0 3.888-2.448 7.015-5.841 7.015-1.14 0-2.212-.592-2.58-1.291l-.701 2.664c-.253.963-.936 2.168-1.396 2.906A11.998 11.998 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://twitter.com/panditashubahug" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Twitter"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.954 4.569c-.885.392-1.83.656-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.564-2.005.974-3.127 1.195a4.516 4.516 0 0 0-7.691 4.117A12.826 12.826 0 0 1 1.671 3.149a4.505 4.505 0 0 0 1.398 6.031 4.48 4.48 0 0 1-2.045-.566v.056a4.523 4.523 0 0 0 3.622 4.429 4.51 4.51 0 0 1-2.04.078 4.523 4.523 0 0 0 4.218 3.132A9.06 9.06 0 0 1 0 19.54a12.784 12.784 0 0 0 6.92 2.03c8.303 0 12.844-6.877 12.844-12.844 0-.195-.004-.39-.013-.583a9.216 9.216 0 0 0 2.203-2.353z"/>
                 </svg>
               </a>
             </div>
@@ -63,7 +74,7 @@ const Footer = () => {
           
           <div>
             <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-lg">
               <li>
                 <Link to="/horoscope" className="text-muted-foreground hover:text-primary transition-colors">
                   Daily Horoscope
@@ -104,7 +115,7 @@ const Footer = () => {
           
           <div>
             <h4 className="font-semibold text-foreground mb-4">Services</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-lg">
               <li>
                 <Link to="/name-correction" className="text-muted-foreground hover:text-primary transition-colors">
                   Name Correction
@@ -130,28 +141,28 @@ const Footer = () => {
           
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contact & Trust</h4>
-            <ul className="space-y-3 mb-4 text-sm">
+            <ul className="space-y-3 mb-4 text-lg">
               <li className="text-muted-foreground">📞 +91 9760924411</li>
-              <li className="text-muted-foreground text-xs break-all">📧 shriramjyotishsadan16@gmail.com</li>
+              <li className="text-muted-foreground text-lg break-all">📧 shriramjyotishsadan16@gmail.com</li>
             </ul>
             
             <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2 text-lg">
                 <Lock className="h-3 w-3 text-primary" />
                 <span className="text-muted-foreground">Private & Confidential</span>
               </div>
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2 text-lg">
                 <CheckCircle className="h-3 w-3 text-primary" />
                 <span className="text-muted-foreground">Verified Astrologer</span>
               </div>
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2 text-lg">
                 <Shield className="h-3 w-3 text-primary" />
                 <span className="text-muted-foreground">Secure Payments</span>
               </div>
             </div>
             
             <div className="space-y-2">
-              <p className="text-xs font-semibold text-foreground">Download App</p>
+              <p className="text-lg font-semibold text-foreground">Download App</p>
               <div className="flex gap-2">
                 <a href="#" className="inline-block">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="h-8" />
