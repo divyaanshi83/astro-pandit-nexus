@@ -7,30 +7,32 @@ import { Calculator, Heart, Star, Moon, Zap, Home, Car, Hash, Sparkles } from "l
 
 const calculators = [
   { name: "Love Calculator", icon: Heart, path: "/calculator/love", description: "Check compatibility with your partner" },
+  { name: "Flame Calculator", icon: Heart, path: "/calculator/flame", description: "FLAME love test" },
+  { name: "Match Making Calculator", icon: Heart, path: "/calculator/match-making", description: "Check marriage compatibility" },
+
   { name: "Nakshatra Calculator", icon: Star, path: "/calculator/nakshatra", description: "Find your birth star" },
   { name: "Dasha Calculator", icon: Moon, path: "/calculator/dasha", description: "Calculate planetary periods" },
   { name: "Mangal Dosh Calculator", icon: Zap, path: "/calculator/mangal-dosh", description: "Check Mars affliction" },
   { name: "Kaal Sarp Dosh Calculator", icon: Zap, path: "/calculator/kaal-sarp", description: "Check serpent dosha" },
   { name: "Pitra Dosh Calculator", icon: Zap, path: "/calculator/pitra-dosh", description: "Check ancestral dosha" },
-  { name: "Shani Saade Sati Calculator", icon: Star, path: "/calculator/sade-sati", description: "Calculate Saturn's transit" },
-  { name: "Vaastu Dosh Calculator", icon: Home, path: "/calculator/vaastu", description: "Check home Vaastu" },
-  { name: "Lucky Vehicle Number", icon: Car, path: "/calculator/vehicle-number", description: "Find lucky vehicle number" },
-  { name: "Rahu Ketu Calculator", icon: Moon, path: "/calculator/rahu-ketu", description: "Calculate lunar nodes" },
-  { name: "Lal Kitab Calculator", icon: Calculator, path: "/calculator/lal-kitab", description: "Lal Kitab predictions" },
-  { name: "Flame Calculator", icon: Heart, path: "/calculator/flame", description: "FLAME love test" },
-  { name: "Kundli Calculator", icon: Star, path: "/calculator/kundli", description: "Generate birth chart" },
-  { name: "Lagna Navamsa Calculator", icon: Star, path: "/calculator/lagna-navamsa", description: "Calculate ascendant charts" },
-  { name: "Lucky Rudraksha", icon: Sparkles, path: "/calculator/rudraksha", description: "Find your lucky Rudraksha" },
-  { name: "Lucky Dates Calculator", icon: Hash, path: "/calculator/lucky-dates", description: "Find auspicious dates" },
-  { name: "Unlucky Dates Calculator", icon: Hash, path: "/calculator/unlucky-dates", description: "Find inauspicious dates" },
-  { name: "Match Making Calculator", icon: Heart, path: "/calculator/matchmaking", description: "Check marriage compatibility" },
+  { name: "Shani Saade Sati Calculator", icon: Star, path: "/calculator/sade-saati", description: "Calculate Saturn's transit" },
+  { name: "Vaastu Dosh Calculator", icon: Home, path: "/calculator/vaastu-dosh", description: "Check home Vaastu" },
+  { name: "Lucky Vehicle Number", icon: Car, path: "/calculator/lucky-vehicle-number", description: "Find lucky vehicle number" },
+  { name: "Rahu Ketu Calculator", icon: Moon, path: "/calculator/raahu-ketu", description: "Calculate lunar nodes" },
+  { name: "Lal Kitab Calculator", icon: Calculator, path: "/calculator/laal-kitab", description: "Lal Kitab predictions" },
+  { name: "Kundli Calculator", icon: Star, path: "/calculator/kundali", description: "Generate birth chart" },
+  { name: "Lagna Navamsa Calculator", icon: Star, path: "/calculator/lagna", description: "Calculate ascendant charts" },
+  { name: "Lucky Rudraksha", icon: Sparkles, path: "/calculator/lucky-rudraksha", description: "Find your lucky Rudraksha" },
+  { name: "Lucky Date Calculator", icon: Hash, path: "/calculator/lucky-date", description: "Find auspicious dates" },
+  { name: "Unlucky Date Calculator", icon: Hash, path: "/calculator/unlucky-date", description: "Find inauspicious dates" },
   { name: "Numerology Calculator", icon: Hash, path: "/calculator/numerology", description: "Calculate life path number" },
   { name: "Lucky Color Calculator", icon: Sparkles, path: "/calculator/lucky-color", description: "Find your lucky color" },
   { name: "Unlucky Color Calculator", icon: Sparkles, path: "/calculator/unlucky-color", description: "Find colors to avoid" },
-  { name: "Personal Year Calculator", icon: Hash, path: "/calculator/personal-year", description: "Calculate personal year" },
-  { name: "Favourable Alphabet", icon: Hash, path: "/calculator/alphabet-numbers", description: "Lucky letters & numbers" },
+  { name: "Personal Year Calculator", icon: Hash, path: "/calculator/personal-year", description: "Calculate your personal year" },
+  { name: "Favourable Alphabet", icon: Hash, path: "/calculator/fav-alphabet", description: "Lucky letters & numbers" },
   { name: "Moon Sign Calculator", icon: Moon, path: "/calculator/moon-sign", description: "Calculate your moon sign" },
 ];
+
 
 const Calculators = () => {
   return (

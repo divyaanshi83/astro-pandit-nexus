@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
-import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
-  const [language, setLanguage] = useState<"en" | "hi">("en");
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === "en" ? "hi" : "en");
-  };
+  const { language, toggleLanguage } = useLanguage();
 
   const content = {
     en: {
@@ -20,10 +16,11 @@ const Navbar = () => {
       muhurat: "Muhurat",
       panchang: "Panchang",
       eclipse: "Eclipse",
+      numerology: "Numerology",
+      vaastu: "Vaastu Dosh",
       store: "Store",
-      nameCorrection: "Name Correction",
       about: "About",
-      contact: "Contact"
+      contact: "Contact",
     },
     hi: {
       home: "होम",
@@ -34,11 +31,12 @@ const Navbar = () => {
       muhurat: "मुहूर्त",
       panchang: "पंचांग",
       eclipse: "ग्रहण",
+      numerology: "अंक ज्योतिष",
+      vaastu: "वास्तु दोष",
       store: "स्टोर",
-      nameCorrection: "नाम सुधार",
       about: "परिचय",
-      contact: "संपर्क"
-    }
+      contact: "संपर्क",
+    },
   };
 
   const t = content[language];
@@ -54,47 +52,22 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-4 text-sm">
-            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.home}
-            </Link>
-            <Link to="/horoscope" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.horoscope}
-            </Link>
-            <Link to="/kundli-milan" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.kundli}
-            </Link>
-            <Link to="/calculators" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.calculators}
-            </Link>
-            <Link to="/festivals" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.festivals}
-            </Link>
-            <Link to="/shubh-muhurat" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.muhurat}
-            </Link>
-            <Link to="/panchang" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.panchang}
-            </Link>
-            <Link to="/eclipse" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.eclipse}
-            </Link>
-            <Link to="/store" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.store}
-            </Link>
-            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.about}
-            </Link>
-            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t.contact}
-            </Link>
+            <Link to="/" className="nav-link">{t.home}</Link>
+            <Link to="/horoscope" className="nav-link">{t.horoscope}</Link>
+            <Link to="/kundli-milan" className="nav-link">{t.kundli}</Link>
+            <Link to="/calculators" className="nav-link">{t.calculators}</Link>
+            <Link to="/festivals" className="nav-link">{t.festivals}</Link>
+            <Link to="/shubh-muhurat" className="nav-link">{t.muhurat}</Link>
+            <Link to="/panchang" className="nav-link">{t.panchang}</Link>
+            <Link to="/eclipse" className="nav-link">{t.eclipse}</Link>
+            <Link to="/numerology" className="nav-link">{t.numerology}</Link>
+            <Link to="/vaastu-dosh" className="nav-link">{t.vaastu}</Link>
+            <Link to="/store" className="nav-link">{t.store}</Link>
+            <Link to="/about" className="nav-link">{t.about}</Link>
+            <Link to="/contact" className="nav-link">{t.contact}</Link>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleLanguage}
-            className="gap-2"
-          >
+          <Button variant="outline" size="sm" onClick={toggleLanguage} className="gap-2">
             <Globe className="h-4 w-4" />
             {language === "en" ? "EN" : "हिं"}
           </Button>

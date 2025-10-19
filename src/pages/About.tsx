@@ -4,6 +4,9 @@ import FloatingButtons from "@/components/FloatingButtons";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, BookOpen, Star } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
+
+
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
