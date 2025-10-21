@@ -21,6 +21,7 @@ const Navbar = () => {
       store: "Store",
       about: "About",
       contact: "Contact",
+      blog: "Blog", // <-- added Blog
     },
     hi: {
       home: "होम",
@@ -36,6 +37,7 @@ const Navbar = () => {
       store: "स्टोर",
       about: "परिचय",
       contact: "संपर्क",
+      blog: "ब्लॉग", // <-- added Blog in Hindi
     },
   };
 
@@ -65,6 +67,7 @@ const Navbar = () => {
             <Link to="/store" className="nav-link">{t.store}</Link>
             <Link to="/about" className="nav-link">{t.about}</Link>
             <Link to="/contact" className="nav-link">{t.contact}</Link>
+            <Link to="/blog" className="nav-link">{t.blog}</Link> {/* <-- added Blog link */}
           </div>
 
           <Button variant="outline" size="sm" onClick={toggleLanguage} className="gap-2">

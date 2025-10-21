@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // 🌍 Language Provider (already used globally)
 import { LanguageProvider } from "@/context/LanguageContext";
 
+import Blog from "@/pages/Blog";
+
 
 import ChatBox from "@/components/ChatBox";
 
@@ -101,6 +103,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/kundli-milan" element={<KundliMilan />} />
           <Route path="/calculators" element={<Calculators />} />
+          <Route path="/blog" element={<Blog />} />
 
           {/* 🌸 Festivals */}
           <Route path="/festivals" element={<FestivalsSection />} />
