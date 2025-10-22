@@ -8,11 +8,13 @@ import { LanguageProvider } from "@/context/LanguageContext";
 
 import Blog from "@/pages/Blog";
 
-
 import ChatBox from "@/components/ChatBox";
 
 // React Router (⚠️ use only Routes/Route here — no BrowserRouter)
 import { Routes, Route } from "react-router-dom";
+
+//gallery page
+import GalleryPage from "@/pages/GalleryPage";
 
 // 🌟 General Pages
 import Index from "./pages/Index";
@@ -154,6 +156,8 @@ const App = () => (
           {/* 💞 Shubh Muhurat */}
           <Route path="/muhurat/:type" element={<MuhuratDates />} />
           <Route path="/muhurat/:type/:date" element={<MuhuratDetail />} />
+
+          <Route path="/gallery" element={<GalleryPage />} />
 
           {/* 🚫 Fallback */}
           <Route path="*" element={<NotFound />} />

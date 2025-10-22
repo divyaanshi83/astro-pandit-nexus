@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
+// ✅ Import your logo
+import logo from "@/assets/logo.jpg";
+
 const Navbar = () => {
   const { language, toggleLanguage } = useLanguage();
 
@@ -21,7 +24,7 @@ const Navbar = () => {
       store: "Store",
       about: "About",
       contact: "Contact",
-      blog: "Blog", // <-- added Blog
+      blog: "Blog",
     },
     hi: {
       home: "होम",
@@ -37,7 +40,7 @@ const Navbar = () => {
       store: "स्टोर",
       about: "परिचय",
       contact: "संपर्क",
-      blog: "ब्लॉग", // <-- added Blog in Hindi
+      blog: "ब्लॉग",
     },
   };
 
@@ -47,8 +50,14 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-playfair font-bold text-primary">
+          {/* Logo + Site Name */}
+          <Link to="/" className="flex items-center space-x-3">
+            <img
+              src={logo}
+              alt="Site Logo"
+              className="h-8 md:h-10 lg:h-12 w-auto rounded-md"
+            />
+            <span className="text-2xl md:text-3xl font-playfair font-bold text-primary">
               Pandit Ashu Bahuguna
             </span>
           </Link>
@@ -64,10 +73,11 @@ const Navbar = () => {
             <Link to="/eclipse" className="nav-link">{t.eclipse}</Link>
             <Link to="/numerology" className="nav-link">{t.numerology}</Link>
             <Link to="/vaastu-dosh" className="nav-link">{t.vaastu}</Link>
+            <Link to="/gallery" className="nav-link">{language === "en" ? "Gallery" : "गैलरी"}</Link>
             <Link to="/store" className="nav-link">{t.store}</Link>
             <Link to="/about" className="nav-link">{t.about}</Link>
             <Link to="/contact" className="nav-link">{t.contact}</Link>
-            <Link to="/blog" className="nav-link">{t.blog}</Link> {/* <-- added Blog link */}
+            <Link to="/blog" className="nav-link">{t.blog}</Link>
           </div>
 
           <Button variant="outline" size="sm" onClick={toggleLanguage} className="gap-2">

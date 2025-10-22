@@ -11,7 +11,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
@@ -31,7 +31,7 @@ const About = () => {
                 <p className="text-muted-foreground">Years Experience</p>
               </CardContent>
             </Card>
-            
+
             <Card className="text-center">
               <CardContent className="p-6">
                 <Users className="h-12 w-12 text-secondary mx-auto mb-3" />
@@ -39,7 +39,7 @@ const About = () => {
                 <p className="text-muted-foreground">Happy Clients</p>
               </CardContent>
             </Card>
-            
+
             <Card className="text-center">
               <CardContent className="p-6">
                 <BookOpen className="h-12 w-12 text-accent mx-auto mb-3" />
@@ -47,7 +47,7 @@ const About = () => {
                 <p className="text-muted-foreground">Vedic Scholar</p>
               </CardContent>
             </Card>
-            
+
             <Card className="text-center">
               <CardContent className="p-6">
                 <Star className="h-12 w-12 text-primary mx-auto mb-3" />
@@ -62,22 +62,61 @@ const About = () => {
               <h2 className="text-2xl font-playfair font-bold text-foreground mb-4">Biography</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Pandit Ashu Bahuguna is a renowned Vedic astrologer with over 35 years of dedicated practice 
-                  in the ancient science of Jyotish. Born into a family of learned scholars, he inherited 
-                  the profound knowledge of Vedic astrology and has devoted his life to helping people find 
-                  clarity, peace, and prosperity through authentic astrological guidance.
+                  हमारे बारे में
+                  ॐ रां रामाय नमः
+                  श्रीराम ज्योतिष सदन
+                  पंडित आशु बहुगुणा को किसी विस्तृत परिचय की आवश्यकता नहीं है। वे वैदिक ज्योतिष की सभी शाखाओं के लिए सबसे अधिक खोजे जाने वाले ज्योतिषियों में से एक हैं।" पंडित आशु बहुगुणा को वैदिक ज्योतिष और वे पाश्चात्य ज्योतिष में कार्य कर रहे है। वे एक वैदिक ज्योतिषी है। जिन्हें 35 वर्षों से अधिक का व्यावहारिक अनुभव है। और उन्होंने दुनिया भर के 40,000 से अधिक लोगों की कुंडलियाँ देखी हैं। दुनिया भर के लोगों द्वारा स्वीकृत उनकी कार्यप्रणाली को प्रमाणित करते है।
+                  वह वर्चुअल और प्रत्यक्ष परामर्श के लिए आपके आस-पास हमेशा एक भरोसेमंद और अच्छे ज्योतिषी है। इसलिए नोएडा/दिल्ली/भारत में सर्वश्रेष्ठ ज्योतिषी की तलाश करने की कोई आवश्यकता नहीं है। एक अच्छा ज्योतिषी भौगोलिक सीमाओं के बावजूद अच्छा बना रहेगा।
+                  वह हमेशा नवमांश कुंडली (डी-9 चार्ट) से सभी विश्लेषण करने में विश्वास करते है। न कि केवल लग्न (9डी-1) चार्ट के आधार पर। एक उदित राशि दो घंटे तक अपरिवर्तित रहती है। लेकिन नवमांश डी-9 इन दो घंटों के दौरान कई बार बदल सकता है। हर बार जब नवमांश चार्ट बदलता है। तो प्रत्येक घर में सितारों की स्थिति बदल जाएगी। इसलिए, सटीक ज्योतिषीय भविष्यवाणियों के लिए नवमांश कुंडलिनी पर विचार करना आवश्यक है। किसी को यह पता होना चाहिए कि जन्म समय की सटीकता किसी भी ज्योतिष पढ़ने का सार है। यदि व्यक्ति के पास सटीक जन्म समय नहीं है। तो समाधान हैं।
+                  लोगों ने सर्वश्रेष्ठ ज्योतिषीय भविष्यवाणियों और समाधानों के लिए उन पर विश्वास किया है।
+                  हम आपकी विशिष्ट आवश्यकताओं के अनुरूप निम्नलिखित प्रकार के परामर्श प्रदान करते हैं।
                 </p>
                 <p>
-                  Throughout his illustrious career, Pandit Ashu Bahuguna has guided more than 50,000 satisfied 
-                  clients across India and abroad. His expertise spans all aspects of Vedic astrology including 
-                  horoscope reading, Kundli matching, gemstone recommendations, and performing various pujas 
+                  Throughout his illustrious career, Pandit Ashu Bahuguna has guided more than 50,000 satisfied
+                  clients across India and abroad. His expertise spans all aspects of Vedic astrology including
+                  horoscope reading, Kundli matching, gemstone recommendations, and performing various pujas
                   and rituals according to ancient traditions.
                 </p>
+                <h2> ज्योतिष क्या है? </h2>
                 <p>
-                  Known for his accurate predictions and practical remedies, he combines traditional wisdom 
-                  with a compassionate approach to help individuals navigate life's challenges. His deep 
-                  understanding of planetary influences and their effects on human life has made him a 
-                  trusted advisor for matters related to career, relationships, health, and spiritual growth.
+              
+                  ज्योतिष एक ऐसी प्रणाली है। जो ग्रहों और नक्षत्रों की स्थिति और गतिविधियों के बीच पृथ्वी पर होने वाली घटनाओं, विशेषकर मानव जीवन और उसके व्यक्तित्व के साथ संबंध की विस्तृत जानकारी देती है। यह मानता है। कि किसी व्यक्ति के जन्म के समय इन ग्रहों और नक्षत्रों की स्थिति उस व्यक्ति के चरित्र और भाग्य को प्रभावित करती है।
+                  ऑनलाइन ज्योतिष कैसे काम करता है?
+                  ऑनलाइन ज्योतिष ट्रेडिशनल ज्योतिष की तरह ही इस सिद्धांत पर काम करता है। कि किसी निश्चित समय पर ग्रहों और नक्षत्रों की स्थिति जीवन के विभिन्न पहलुओं को कैसे प्रभावित करती है। ऑनलाइन ज्योतिषी किसी व्यक्ति की जन्म की तारीख, समय और स्थान के आधार पर जन्म कुंडली या राशिफल बनाते हैं। यह कुंडली (बर्थ चार्ट) सूर्य, चंद्रमा और ग्रहों की स्थिति को दर्शाती है। जिसके द्वारा एक ज्योतिषी जातक के व्यक्तित्व, रिश्तों और आने वाले भविष्य से जुड़ी संभावित घटनाओं के बारे में जानकारी प्रदान करते हैं।
+                  राशि क्या हैं?
+                  राशि, ज्योतिष शास्त्र के अनुसार, किसी व्यक्ति के जन्म के समय चंद्रमा जिस राशि में होता है। उसे उस व्यक्ति की राशि कहा जाता है। इसे जन्म राशि या चंद्र राशि भी कहा जाता है। ज्योतिष में राशियों का विशेष महत्व है। और राशि के आधार पर कई बातें ज्ञात होती हैं। जैसे व्यक्ति का स्वभाव, व्यक्तित्व, ताकत, कमजोरियां, गुण और दोष। ज्योतिष शास्त्र में 12 राशियां होती हैं। ये राशियांहैं। - मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुंभ, और मीन.
+                  क्या मैं ऑनलाइन ज्योतिष Website पर भरोसा कर सकता / सकती हूँ?
+                  ऑनलाइन ज्योतिष Website पर भरोसा हर किसी के लिए अलग होता है। कुछ लोग इन Website से मिली जानकारी से लाभ उठाते हैं। जबकि अन्य लोग संदेह में रहते हैं। ऑनलाइन ज्योतिष को खुले दिमाग से देखना जरूरी है।
+                  http://shriramjyotishsadan.in ज्योतिष में कौन-कौन सी सुविधाएँ उपलब्ध हैं?
+                  व्यक्तिगत कुंडली: अपनी जन्म तिथि, समय और जन्म स्थान के आधार पर अपनी जन्म कुंडली बनाएँ और उसका विश्लेषण करें।
+                  लाइव परामर्श: चैट, वॉयस या वीडियो कॉल के ज़रिए वास्तविक समय पर परामर्श के लिए जुड़ें।
+                  राशिफल भविष्यवाणियां: अपनी राशि के अनुसार दैनिक, साप्ताहिक या मासिक राशिफल और प्रेम राशिफल पाएँ।
+                  ज्योतिषीय रिपोर्ट: अपने जीवन के विभिन्न पहलुओं पर विस्तृत रिपोर्ट पाएं, जिसमें प्रेम राशिफल, करियर भविष्यवाणी और स्वास्थ्य शामिल हैं।
+                  उपाय और सुझाव: अपने जीवन में विशिष्ट चुनौतियों का समाधान करने या सकारात्मक प्रभावों को बढ़ाने के लिए व्यक्तिगत उपाय या सुझाव पाएँ।
+                  त्योहार और शुभ समय: ज्योतिष के आधार पर विभिन्न गतिविधियों के लिए महत्वपूर्ण त्योहारों और शुभ समय के बारे में जानकारी।
+                  अनुकूलता विश्लेषण: ज्योतिषीय चार्ट के आधार पर जीवनसाथी और दोस्तो के बीच आपसी समझ और अनुकूलता का विश्लेषण ज्योतिषीय गणनाओं के आधार पर किया जाता है।
+                  A Consultation with the Best Astrologer in India can Change Your Life For Good
+                  Benefits of Astrology in Everyday Lives
+                  Only Astrologer in India Combining Science and Stars for Accurate Predictions
+                  Astrology Services
+                  Top Astrologer in India
+                  The Most Famous Astrologer
+                  Our Best Astrology Services
+                  Because she is the best Astrologer in India
+                  Some of our Best Google Reviews
+                  What does your birth chart TELL you?
+                  Consult the best astrologer In India Today
+                  Here’s what you can expect
+                  Why Choose the Best Astrologer in India?
+                  Brihat Parashar Patrika
+                  Janam Kundli Plus
+                  Navgraha Report
+                  All Dosha Report
+                  Match Analysis Detailed
+                  Bhrigu Patrika
+                  Lal Kitab
+                  Varsh Details
+                  Astrologer consultation online : Pandit Ashu Bahuguna
                 </p>
               </div>
             </CardContent>
