@@ -24,7 +24,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+
+    /* ✅ Make sure only Vite/Browser types are included */
+    "types": ["vite/client"]
   },
   "include": ["src"]
 }

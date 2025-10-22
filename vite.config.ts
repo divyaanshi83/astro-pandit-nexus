@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => {
   // Load environment variables
@@ -28,14 +27,13 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      react(),
-      mode === "development" && componentTagger(), // adds dev-only component tagging
-    ].filter(Boolean),
+      react() // ✅ only keep React plugin, remove Lovable componentTagger
+    ],
 
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"), // clean alias for src/
-        "@utils": path.resolve(__dirname, "./netlify/functions/utils"), // ✅ now you can import helpers easily
+        "@utils": path.resolve(__dirname, "./netlify/functions/utils"), // ✅ easy helper imports
       },
     },
 
