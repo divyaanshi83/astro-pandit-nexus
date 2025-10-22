@@ -14,11 +14,11 @@ const images = [g1, g2, g3, img1, img2, img3, img4]; // keep adding your images
 
 const GalleryPage = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-100 min-h-screen">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-playfair font-bold text-amber-800 text-center mb-12">
-          Gallery
-        </h1>
+      <section className="py-20 bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-100 min-h-screen">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-playfair font-bold text-amber-800 text-center mb-12">
+            Gallery
+          </h1>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {images.map((img, index) => (

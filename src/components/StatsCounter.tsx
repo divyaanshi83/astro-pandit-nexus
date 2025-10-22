@@ -12,7 +12,7 @@ const STATS: StatItem[] = [
   { value: 50, suffix: "+", label: "Year's Of Legacy" },
   { value: 50, suffix: "k+", label: "Students Enrolled" },
   { value: 100, suffix: "k+", label: "Consultations Given" },
-  { value: 20, suffix: "+", label: "Awards in the field of Occult" },
+  { value: 20, suffix: "+", label: "Awards in the field of ccult" },
 ];
 
 type CounterProps = {
