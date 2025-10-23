@@ -54,7 +54,8 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({
             key={idx}
             src={img}
             alt={`slide-${idx}`}
-            className="w-full flex-shrink-0 h-96 object-cover"
+            className="w-full flex-shrink-0 object-cover"
+              style={{ height: "350px" }}
           />
         ))}
       </div>

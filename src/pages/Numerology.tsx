@@ -80,8 +80,7 @@ const Numerology = () => {
             Discover your <span className="text-primary font-semibold">Lucky Number</span>,{" "}
             <span className="text-primary font-semibold">Lucky Color</span>,{" "}
             <span className="text-primary font-semibold">Bhagyank</span>, and{" "}
-            <span className="text-primary font-semibold">Divine Guidance</span> —
-            all revealed through your birth details.
+            <span className="text-primary font-semibold">Divine Guidance</span> — all revealed through your birth details.
           </p>
 
           <Card className="mb-10 shadow-lg">
@@ -117,7 +116,6 @@ const Numerology = () => {
               required
             />
 
-            {/* Gender Dropdown */}
             <select
               name="gender"
               className="w-full p-3 border rounded-md"
@@ -145,7 +143,6 @@ const Numerology = () => {
               onChange={handleChange}
             />
 
-            {/* Country Dropdown */}
             <select
               name="country"
               className="w-full p-3 border rounded-md"
@@ -158,7 +155,6 @@ const Numerology = () => {
               ))}
             </select>
 
-            {/* Show State/City if India */}
             {formData.country === "India" && (
               <>
                 <select

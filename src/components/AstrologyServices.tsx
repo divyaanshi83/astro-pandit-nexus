@@ -1,70 +1,149 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Service {
-  name: string;
+  id: number;
+  title: string;
+  image: string;
   description: string;
-  link: string; // link to detailed page
+  link: string;
 }
 
-const services: Service[] = [
-  { name: "Mangalik Dosh", description: "Know your Mangalik Dosh effects", link: "/services/mangalik-dosh" },
-  { name: "Kaal Sarp Dosh", description: "Understand Kaal Sarp Dosh impact", link: "/services/kaal-sarp-dosh" },
-  { name: "Love Marriage??", description: "Guidance for love marriage issues", link: "/services/love-marriage" },
-  { name: "Career Path", description: "Discover your ideal career path", link: "/services/career-path" },
-  { name: "Share Market", description: "Astrological insights for investments", link: "/services/share-market" },
-  { name: "Child Happiness", description: "Predictions related to children", link: "/services/child-happiness" },
-  { name: "Pitra Dosh", description: "Know about Pitra Dosh remedies", link: "/services/pitra-dosh" },
-  { name: "Evil Eye", description: "Protection from evil eye", link: "/services/evil-eye" },
-  { name: "Bussiness Problem", description: "Update your Bussiness in correct Pathway", link: "/services/bussiness-problem" },
-  { name: "Service Problem", description: "Protection from service problem", link: "/services/service-problem" }, 
-  { name: ".", description: "Update your Bussiness in correct Pathway", link: "/services/bussiness-problem" },
-  { name: ".", description: "Protection from service problem", link: "/services/service-problem" },
-];
+const AstrologyServices: React.FC = () => {
+  const services: Service[] = [
+    {
+      id: 1,
+      title: "सुख समृद्धि के उपाय",
+      image: "/images/sukh-samridhi.jpg",
+      description: "जानिए अपने जीवन में सुख और समृद्धि लाने के सरल उपाय।",
+      link: "/sukh-samridhi",
+    },
+    {
+      id: 2,
+      title: "वास्तु दोष निवारण",
+      image: "/images/vaastu.jpg",
+      description: "घर या कार्यालय के वास्तु दोष दूर करने के प्रभावी उपाय।",
+      link: "/vaastu-dosh",
+    },
+    {
+      id: 3,
+      title: "कुंडली विश्लेषण",
+      image: "/images/kundli.jpg",
+      description: "आपकी कुंडली के अनुसार भविष्य और समाधान।",
+      link: "/kundli-analysis",
+    },
+    {
+      id: 4,
+      title: "दशा विश्लेषण",
+      image: "/images/dasha.jpg",
+      description: "जानिए आपकी दशा और उसका जीवन पर प्रभाव।",
+      link: "/dasha-analysis",
+    },
+    {
+      id: 5,
+      title: "जन्म रत्न सुझाव",
+      image: "/images/gemstone.jpg",
+      description: "आपकी कुंडली के अनुसार शुभ रत्न की सलाह।",
+      link: "/gemstone-suggestion",
+    },
+    {
+      id: 6,
+      title: "विवाह योग विश्लेषण",
+      image: "/images/marriage.jpg",
+      description: "आपके विवाह के योग और उनके उपाय जानिए।",
+      link: "/marriage-yog",
+    },
+    {
+      id: 7,
+      title: "पितृ दोष निवारण",
+      image: "/images/pitru-dosh.jpg",
+      description: "पितृ दोष को दूर करने के प्रभावी उपाय।",
+      link: "/pitru-dosh",
+    },
+    {
+      id: 8,
+      title: "संतान प्राप्ति उपाय",
+      image: "/images/santan.jpg",
+      description: "संतान प्राप्ति के लिए ज्योतिषीय उपाय।",
+      link: "/santan-upay",
+    },
+    {
+      id: 9,
+      title: "व्यवसाय वृद्धि उपाय",
+      image: "/images/business.jpg",
+      description: "व्यवसाय में सफलता के लिए विशेष ज्योतिषीय उपाय।",
+      link: "/business-upay",
+    },
+    {
+      id: 10,
+      title: "नजर उतारना / Evil Eye",
+      image: "/images/evil-eye.jpg",
+      description: "नजर उतारने के प्रभावी उपाय।",
+      link: "/evil-eye",
+    },
 
-const AstrologyServices = () => {
+  ];
+
+  // Show 6 cards initially (3 rows if 3 cols per row)
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  const handleViewMore = () => {
+    if (visibleCount < services.length) {
+      setVisibleCount((prev) => prev + 6); // Show 2 more rows (6 cards)
+    } else {
+      setVisibleCount(6); // Reset to initial view
+    }
+  };
+
   return (
-    <section className="py-16 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-playfair font-bold text-foreground mb-4">
-            Astrology Services
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Explore various astrology services and get detailed guidance
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 py-12 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl font-bold text-orange-700 mb-4">
+            ज्योतिष सेवाएं
+          </h1>
+          <p className="text-gray-700 text-lg mb-10">
+            जीवन के हर क्षेत्र में मार्गदर्शन के लिए हमारी विशिष्ट ज्योतिष सेवाएं।
           </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {services.map((service) => (
-            <Card key={service.name} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              {/* Placeholder for image */}
-              <div className="aspect-square bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
-                Image coming soon
+          {/* Service Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+            {services.slice(0, visibleCount).map((service) => (
+              <div
+                key={service.id}
+                className="bg-white shadow-lg rounded-2xl overflow-hidden border border-orange-200 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h2 className="text-2xl font-semibold text-orange-700 mb-2">
+                    {service.title}
+                  </h2>
+                  <p className="text-gray-700 mb-4">{service.description}</p>
+                  <Link
+                    to={service.link}
+                    className="inline-block px-5 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition"
+                  >
+                    और जानें →
+                  </Link>
+                </div>
               </div>
+            ))}
+          </div>
 
-              <CardContent className="p-6">
-                <h3 className="text-xl font-playfair font-semibold text-foreground mb-2">
-                  {service.name}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {service.description}
-                </p>
-              </CardContent>
-
-              <div className="text-center mb-4">
-                <Link to={service.link}>
-                  <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    Learn More
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          ))}
+          {/* View More Button */}
+          <button
+            onClick={handleViewMore}
+            className="px-8 py-3 bg-orange-600 text-white rounded-full text-lg font-semibold hover:bg-orange-700 transition"
+          >
+            {visibleCount < services.length ? "🔽 View More" : "🔼 View Less"}
+          </button>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

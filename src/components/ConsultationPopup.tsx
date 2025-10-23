@@ -10,7 +10,7 @@ const ConsultationPopup = () => {
     // Show popup after 1 minute, then every 1 minute
     const timer = setInterval(() => {
       setIsOpen(true);
-    }, 60000); // 60 seconds
+    }, 500000); // 5 minute
 
     return () => clearInterval(timer);
   }, []);

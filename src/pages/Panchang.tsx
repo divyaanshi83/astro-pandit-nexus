@@ -21,7 +21,6 @@ const Panchang = () => {
       try {
         const response = await fetch("/.netlify/functions/panchang");
         const data = await response.json();
-        console.log("🔮 Panchang API response:", data);
         setPanchang(data);
       } catch (error) {
         console.error("❌ Panchang fetch error:", error);

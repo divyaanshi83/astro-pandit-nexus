@@ -50,7 +50,7 @@ const Horoscope = () => {
                 {zodiacSigns.map((sign) => (
                   <Link
                     key={sign.name}
-                    to={`/horoscope/${sign.name.toLowerCase()}`} // 👈 Dynamic route
+                    to={`/horoscope/${sign.name.toLowerCase()}-daily-prediction`} // ✅ FIXED LINK
                   >
                     <Card className="hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
                       <CardContent className="p-6 text-center">
@@ -71,7 +71,7 @@ const Horoscope = () => {
               </div>
             </TabsContent>
 
-            {/* Weekly Horoscope (Placeholder for now) */}
+            {/* Weekly Horoscope (Placeholder) */}
             <TabsContent value="weekly">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {zodiacSigns.map((sign) => (

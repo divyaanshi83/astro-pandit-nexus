@@ -6,9 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { callOpenAI } from "@/utils/openai";
 
 interface LuckyCalculatorTemplateProps {
-    type: "lucky-color" | "lucky-date" | "lucky-number" | "lucky-rudraksha" | "lucky-vehicle-number";
+    type: "lucky-color" | "lucky-date" | "lucky-number" | "lucky-rudraksha" | "lucky-vehicle-number" | "unlucky-color";
 }
 
 const LuckyCalculatorTemplate: React.FC<LuckyCalculatorTemplateProps> = ({ type }) => {
@@ -30,17 +31,19 @@ const LuckyCalculatorTemplate: React.FC<LuckyCalculatorTemplateProps> = ({ type 
         setResult(null);
 
         try {
-            const res = await fetch("/.netlify/functions/luckyCalculator", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, dob, country, type }),
-            });
+            // Prepare prompt for OpenAI
+            const prompt = `Calculate ${type.replace(/-/g, " ")} for the person:
+            Name: ${name}
+            DOB: ${dob}
+            Country: ${country}`;
 
-            if (!res.ok) throw new Error("Network response was not ok");
-            const data = await res.json();
+            const data = await callOpenAI([{ role: "user", content: prompt }]);
 
-            setResult(data.result);
+            // Assuming OpenAI returns text in data.choices[0].message.content
+            const openAIResult = data?.choices?.[0]?.message?.content || "No result found.";
+            setResult(openAIResult);
         } catch (err) {
+            console.error(err);
             toast.error("Error fetching data. Try again later.");
         } finally {
             setLoading(false);

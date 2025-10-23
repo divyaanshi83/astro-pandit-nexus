@@ -68,7 +68,6 @@ const VaastuDosh = () => {
             Discover the causes, astrological cures, and sacred mantras to restore harmony in your home.
           </p>
 
-          {/* 🔍 Search bar */}
           <div className="flex justify-center mb-8">
             <input
               type="text"
@@ -79,7 +78,6 @@ const VaastuDosh = () => {
             />
           </div>
 
-          {/* Dosh selection dropdown */}
           <div className="flex justify-center mb-10">
             <select
               className="w-full md:w-2/3 p-3 border rounded-lg shadow-sm"
@@ -95,7 +93,6 @@ const VaastuDosh = () => {
             </select>
           </div>
 
-          {/* Show Result */}
           {loading && (
             <p className="text-center text-muted-foreground animate-pulse">
               Fetching Vaastu remedies for "{selectedDosh}"...

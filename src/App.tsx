@@ -16,6 +16,7 @@ import { Routes, Route } from "react-router-dom";
 //gallery page
 import GalleryPage from "@/pages/GalleryPage";
 
+
 // 🌟 General Pages
 import Index from "./pages/Index";
 import Horoscope from "./pages/Horoscope";
@@ -78,7 +79,41 @@ import Love from "@/pages/calculators/Love";
 import Flame from "@/pages/calculators/Flame";
 import MatchMaking from "@/pages/calculators/MatchMaking";
 
-// 🧩 Common Layout Components
+// astrology services (pages) BLOGSS
+import SukhSamridhi from "@/pages/services/SukhSamridhi";
+import KundliAnalysis from "@/pages/services/KundliAnalysis";
+import DashaAnalysis from "@/pages/services/DashaAnalysis";
+import GemstoneSuggestion from "@/pages/services/GemstoneSuggestion";
+import MarriageYog from "@/pages/services/MarriageYog";
+import PitruDosh from "@/pages/services/PitruDosh";
+import SantanUpay from "@/pages/services/SantanUpay";
+import BusinessUpay from "@/pages/services/BusinessUpay";
+import EvilEye from "./pages/services/EvilEye";
+
+
+// --- Import all Yantra Pages ---
+import SriYantra from "@/pages/yantras/SriYantra";
+import KuberYantra from "@/pages/yantras/KuberYantra";
+import LakshmiYantra from "@/pages/yantras/LakshmiYantra";
+import GaneshYantra from "@/pages/yantras/GaneshYantra";
+import HanumanYantra from "@/pages/yantras/HanumanYantra";
+import DurgaYantra from "@/pages/yantras/DurgaYantra";
+import MahamrityunjayaYantra from "@/pages/yantras/MahamrityunjayaYantra";
+import SaraswatiYantra from "@/pages/yantras/SaraswatiYantra";
+import ShivaYantra from "@/pages/yantras/ShivaYantra";
+import NavagrahaYantra from "@/pages/yantras/NavagrahaYantra";
+import SiddhSuryaYantra from "@/pages/yantras/SiddhSuryaYantra";
+import SiddhChandraYantra from "@/pages/yantras/SiddhChandraYantra";
+import SiddhBrihaspatiYantra from "@/pages/yantras/SiddhBrahaspatiYantra";
+import SiddhShukraYantra from "@/pages/yantras/SiddhShukraYantra";
+import SiddhShaniYantra from "@/pages/yantras/SiddhShaniYantra";
+import SiddhRahuYantra from "@/pages/yantras/SiddhRahuYantra";
+import SiddhKetuYantra from "@/pages/yantras/SiddhKetuYantra";
+import SiddhSarvKaryaSiddhiYantra from "@/pages/yantras/SiddhSarvKaryaSiddhiYantra";
+import RudrakshMala from "@/pages/yantras/RudrakshMala";
+import HaldiMala from "@/pages/yantras/HaldiMala";
+import SafedMotiMala from "@/pages/yantras/SafedMotiMala";
+
 
 const queryClient = new QueryClient();
 
@@ -90,9 +125,10 @@ const App = () => (
         <Sonner />
 
         {/* ✅ Removed <BrowserRouter> (already in main.tsx) */}
-     
+
 
         <Routes>
+
           {/* 🌟 Main Pages */}
           <Route path="/" element={<Index />} />
           <Route path="/horoscope" element={<Horoscope />} />
@@ -106,6 +142,19 @@ const App = () => (
           <Route path="/kundli-milan" element={<KundliMilan />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/blog" element={<Blog />} />
+
+
+          {/* 🌸 astrology services pages BLOGSSSSS */}
+          <Route path="/sukh-samridhi" element={<SukhSamridhi />} />
+          <Route path="/kundli-analysis" element={<KundliAnalysis />} />
+          <Route path="/dasha-analysis" element={<DashaAnalysis />} />
+          <Route path="/gemstone-suggestion" element={<GemstoneSuggestion />} />
+          <Route path="/marriage-yog" element={<MarriageYog />} />
+          <Route path="/pitru-dosh" element={<PitruDosh />} />
+          <Route path="/santan-upay" element={<SantanUpay />} />
+          <Route path="/business-upay" element={<BusinessUpay />} />
+          <Route path="/evil-eye" element={<EvilEye />} />
+
 
           {/* 🌸 Festivals */}
           <Route path="/festivals" element={<FestivalsSection />} />
@@ -147,6 +196,33 @@ const App = () => (
           <Route path="/calculator/lucky-rudraksha" element={<LuckyRudraksha />} />
           <Route path="/calculator/lucky-vehicle-number" element={<LuckyVehicleNumber />} />
           <Route path="/calculator/moon-sign" element={<MoonSign />} />
+
+
+
+          <Route path="/yantras/sriYantra" element={<SriYantra />} />
+          <Route path="/yantras/kuberYantra" element={<KuberYantra />} />
+          <Route path="/yantras/lakshmiYantra" element={<LakshmiYantra />} />
+          <Route path="/yantras/ganeshYantra" element={<GaneshYantra />} />
+          <Route path="/yantras/hanumanYantra" element={<HanumanYantra />} />
+          <Route path="/yantras/durgaYantra" element={<DurgaYantra />} />
+          <Route path="/yantras/mahamrityunjayaYantra" element={<MahamrityunjayaYantra />} />
+          <Route path="/yantras/saraswatiYantra" element={<SaraswatiYantra />} />
+          <Route path="/yantras/shivaYantra" element={<ShivaYantra />} />
+          <Route path="/yantras/navagrahaYantra" element={<NavagrahaYantra />} />
+          <Route path="/yantras/siddhSuryaYantra" element={<SiddhSuryaYantra />} />
+          <Route path="/yantras/siddhChandraYantra" element={<SiddhChandraYantra />} />
+          <Route path="/yantras/siddhBrihaspatiYantra" element={<SiddhBrihaspatiYantra />} />
+          <Route path="/yantras/siddhShukraYantra" element={<SiddhShukraYantra />} />
+          <Route path="/yantras/siddhShaniYantra" element={<SiddhShaniYantra />} />
+          <Route path="/yantras/siddhRahuYantra" element={<SiddhRahuYantra />} />
+          <Route path="/yantras/siddhKetuYantra" element={<SiddhKetuYantra />} />
+          <Route path="/yantras/siddhSarvKaryaSiddhiYantra" element={<SiddhSarvKaryaSiddhiYantra />} />
+          <Route path="/yantras/rudrakshMala" element={<RudrakshMala />} />
+          <Route path="/yantras/haldiMala" element={<HaldiMala />} />
+          <Route path="/yantras/safedMotiMala" element={<SafedMotiMala />} />
+
+
+
 
           {/* 💞 Dual Input Calculators */}
           <Route path="/calculator/love" element={<Love />} />
