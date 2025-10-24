@@ -1,9 +1,7 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ServicesGrid from "@/components/ServicesGrid";
 import FestivalsSection from "@/components/FestivalsSection";
 import Testimonials from "@/components/Testimonials";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import ConsultationPopup from "@/components/ConsultationPopup";
 import PhotoSlider from "@/components/PhotoSlider";
@@ -32,7 +30,6 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <Hero />
       <AboutPandit />
       <ServicesGrid />
@@ -49,7 +46,6 @@ const Index = () => {
       <Testimonials />
       <StatsCounter />
       <FAQ />
-      <Footer />
       <FloatingButtons />
       <ConsultationPopup />
     </div>

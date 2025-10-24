@@ -7,42 +7,43 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    base: "./", // ensures assets resolve correctly on Netlify
-    root: ".", // makes sure Vite recognizes root index.html
-    publicDir: "public", // for static assets like icons, manifest, etc.
+    base: "./", // ensures assets resolve correctly on production
+    root: ".", // ensures Vite recognizes root index.html
+    publicDir: "public",
 
     server: {
-      host: "localhost", // works well for Netlify Dev on Windows
+      host: "localhost",
       port: 8080,
       strictPort: true,
 
-      // Fixes local CORS when using Netlify Functions
+      // ✅ Proxy /api calls to your Express server in dev
       proxy: {
-        "/.netlify/functions": {
-          target: "http://localhost:8888",
+        "/api": {
+          target: "http://localhost:3000", // Express server
           changeOrigin: true,
           secure: false,
         },
       },
+
+      // Fix React Router refresh 404s
+      historyApiFallback: true,
     },
 
-    plugins: [
-      react() // ✅ only keep React plugin, remove Lovable componentTagger
-    ],
+    plugins: [react()],
 
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"), // clean alias for src/
-        "@utils": path.resolve(__dirname, "./netlify/functions/utils"), // ✅ easy helper imports
+        "@": path.resolve(__dirname, "./src"),
+        "@utils": path.resolve(__dirname, "./netlify/functions/utils"), // optional, keep if needed
       },
     },
 
     build: {
-      outDir: "dist", // Netlify will publish from here
-      emptyOutDir: true, // cleans output before each build
+      outDir: "dist",
+      emptyOutDir: true,
     },
 
-    // ✅ Make OPENAI_API_KEY available as import.meta.env.VITE_OPENAI_API_KEY
+    // ✅ Make OPENAI_API_KEY available in front-end if needed
     define: {
       "import.meta.env.VITE_OPENAI_API_KEY": JSON.stringify(env.OPENAI_API_KEY),
     },

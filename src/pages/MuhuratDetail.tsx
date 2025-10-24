@@ -19,12 +19,15 @@ export default function MuhuratDetail() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
+        setLoading(true);
         const res = await fetch(
-          `/.netlify/functions/getMuhuratDetails?type=${type}&date=${date}`
+          `/api/muhurat-detail?type=${type}&date=${encodeURIComponent(date || "")}`
         );
-        const data = await res.json();
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data: MuhuratDetailData = await res.json();
         setDetails(data);
       } catch (err) {
+        console.error(err);
         setError("Failed to fetch muhurat details.");
       } finally {
         setLoading(false);
@@ -49,7 +52,9 @@ export default function MuhuratDetail() {
               <h1 className="text-4xl font-bold text-orange-800 mb-6 text-center capitalize">
                 {type?.replace("-", " ")} Muhurat
               </h1>
-              <h2 className="text-lg text-orange-700 text-center mb-8">{decodeURIComponent(date || "")}</h2>
+              <h2 className="text-lg text-orange-700 text-center mb-8">
+                {decodeURIComponent(date || "")}
+              </h2>
 
               <section className="mb-8">
                 <h3 className="text-2xl font-semibold mb-4 text-orange-700">

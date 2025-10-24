@@ -2,22 +2,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-// 🌍 Language Provider (already used globally)
 import { LanguageProvider } from "@/context/LanguageContext";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import SEO from "@/components/SEO";
 
-import Blog from "@/pages/Blog";
 
 import ChatBox from "@/components/ChatBox";
 
-// React Router (⚠️ use only Routes/Route here — no BrowserRouter)
-import { Routes, Route } from "react-router-dom";
-
-//gallery page
-import GalleryPage from "@/pages/GalleryPage";
-
-
-// 🌟 General Pages
+// 📄 Pages
 import Index from "./pages/Index";
 import Horoscope from "./pages/Horoscope";
 import KundliMilan from "./pages/KundliMilan";
@@ -32,28 +25,25 @@ import MuhuratDetail from "@/pages/MuhuratDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Blog from "@/pages/Blog";
+import GalleryPage from "@/pages/GalleryPage";
 
-// 🌸 Festivals Pages
+// 🌸 Festival Pages
 import FestivalsSection from "@/pages/FestivalsSection";
 import FestivalDetail from "@/pages/FestivalDetail";
 
-import Numerology from "@/pages/Numerology";
-import VaastuDosh from "@/pages/VaastuDosh";
+// 📿 Services
+import SukhSamridhi from "@/pages/services/SukhSamridhi";
+import KundliAnalysis from "@/pages/services/KundliAnalysis";
+import DashaAnalysis from "@/pages/services/DashaAnalysis";
+import GemstoneSuggestion from "@/pages/services/GemstoneSuggestion";
+import MarriageYog from "@/pages/services/MarriageYog";
+import PitruDosh from "@/pages/services/PitruDosh";
+import SantanUpay from "@/pages/services/SantanUpay";
+import BusinessUpay from "@/pages/services/BusinessUpay";
+import EvilEye from "./pages/services/EvilEye";
 
-// ♈ Horoscope Individual Pages
-import Aries from "./pages/horoscope/Aries";
-import Gemini from "./pages/horoscope/Gemini";
-import Cancer from "./pages/horoscope/Cancer";
-import Leo from "./pages/horoscope/Leo";
-import Virgo from "./pages/horoscope/Virgo";
-import Libra from "./pages/horoscope/Libra";
-import Scorpio from "./pages/horoscope/Scorpio";
-import Sagittarius from "./pages/horoscope/Sagittarius";
-import Capricorn from "./pages/horoscope/Capricorn";
-import Aquarius from "./pages/horoscope/Aquarius";
-import Pisces from "./pages/horoscope/Pisces";
-
-// 🔮 Calculator Pages (Single Input)
+// 🔮 Calculators (single input)
 import Nakshatra from "@/pages/calculators/Nakshatra";
 import Dasha from "@/pages/calculators/Dasha";
 import MangalDosh from "@/pages/calculators/MangalDosh";
@@ -79,19 +69,8 @@ import Love from "@/pages/calculators/Love";
 import Flame from "@/pages/calculators/Flame";
 import MatchMaking from "@/pages/calculators/MatchMaking";
 
-// astrology services (pages) BLOGSS
-import SukhSamridhi from "@/pages/services/SukhSamridhi";
-import KundliAnalysis from "@/pages/services/KundliAnalysis";
-import DashaAnalysis from "@/pages/services/DashaAnalysis";
-import GemstoneSuggestion from "@/pages/services/GemstoneSuggestion";
-import MarriageYog from "@/pages/services/MarriageYog";
-import PitruDosh from "@/pages/services/PitruDosh";
-import SantanUpay from "@/pages/services/SantanUpay";
-import BusinessUpay from "@/pages/services/BusinessUpay";
-import EvilEye from "./pages/services/EvilEye";
 
-
-// --- Import all Yantra Pages ---
+// 🕉️ Yantras
 import SriYantra from "@/pages/yantras/SriYantra";
 import KuberYantra from "@/pages/yantras/KuberYantra";
 import LakshmiYantra from "@/pages/yantras/LakshmiYantra";
@@ -114,134 +93,156 @@ import RudrakshMala from "@/pages/yantras/RudrakshMala";
 import HaldiMala from "@/pages/yantras/HaldiMala";
 import SafedMotiMala from "@/pages/yantras/SafedMotiMala";
 
+import Numerology from "@/pages/Numerology";
+import VaastuDosh from "@/pages/VaastuDosh";
+
+import HoroscopeWrapper from "@/components/HoroscopeWrapper";
 
 const queryClient = new QueryClient();
 
+// ✅ Dynamic SEO component
+const AppSEO = () => {
+  const location = useLocation();
+  const url = `https://astroashupandit.com${location.pathname}`;
+  const titleMap: Record<string, string> = {
+    "/": "Pandit Ashu Bahuguna | India’s Best Astrologer | Top Jyotish in North India",
+    "/horoscope": "Horoscope 2025 | Daily Rashifal by Pandit Ashu Bahuguna",
+    "/kundli-milan": "Kundli Milan | Matchmaking by Expert Astrologer in Muzaffarnagar",
+    "/store": "Buy Original Yantras, Rudraksha & Malas | Astro Store India",
+    "/about": "About Pandit Ashu Bahuguna | 35+ Years Experience | Famous Jyotish",
+    "/contact": "Contact India’s Top Astrologer | Talk to Pandit Ashu Bahuguna",
+  };
+
+  const description =
+    "Get authentic astrology guidance from India’s best astrologer — Pandit Ashu Bahuguna. 35+ years experience. Kundli, Horoscope, Puja, Yantra & more.";
+  const keywords =
+    "astrology, astrologer, jyotish, kundli milan, horoscope, yantra, puja, pandit, India’s Best Astrologer, top astrologer in North India, Muzaffarnagar astrologer, भारत के टॉप ज्योतिषी, उत्तर भारत के श्रेष्ठ ज्योतिषी, top 10 astrologers in India, Uttar Pradesh astrologer, best pandit for kundli";
+
+  return (
+    <Helmet>
+      <title>{titleMap[location.pathname] || "Pandit Ashu Bahuguna - Expert Astrologer in India"}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <link rel="canonical" href={url} />
+    </Helmet>
+  );
+};
+
 const App = () => (
-  <LanguageProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
+  <HelmetProvider>
+    <LanguageProvider>
+      <SEO />
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          
 
-        {/* ✅ Removed <BrowserRouter> (already in main.tsx) */}
+          <Routes>
+            {/* 🌟 Main Pages */}
+            <Route path="/" element={<Index />} />
+            <Route path="/horoscope" element={<Horoscope />} />
+            <Route path="/shubh-muhurat" element={<ShubhMuhurat />} />
+            <Route path="/panchang" element={<Panchang />} />
+            <Route path="/eclipse" element={<Eclipse />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/name-correction" element={<NameCorrection />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/kundli-milan" element={<KundliMilan />} />
+            <Route path="/calculators" element={<Calculators />} />
+            <Route path="/blog" element={<Blog />} />
 
+            {/* 🌸 Services */}
+            <Route path="/sukh-samridhi" element={<SukhSamridhi />} />
+            <Route path="/kundli-analysis" element={<KundliAnalysis />} />
+            <Route path="/dasha-analysis" element={<DashaAnalysis />} />
+            <Route path="/gemstone-suggestion" element={<GemstoneSuggestion />} />
+            <Route path="/marriage-yog" element={<MarriageYog />} />
+            <Route path="/pitru-dosh" element={<PitruDosh />} />
+            <Route path="/santan-upay" element={<SantanUpay />} />
+            <Route path="/business-upay" element={<BusinessUpay />} />
+            <Route path="/evil-eye" element={<EvilEye />} />
 
-        <Routes>
+            {/* 🌸 Festivals */}
+            <Route path="/festivals" element={<FestivalsSection />} />
+            <Route path="/festivals/:name" element={<FestivalDetail />} />
 
-          {/* 🌟 Main Pages */}
-          <Route path="/" element={<Index />} />
-          <Route path="/horoscope" element={<Horoscope />} />
-          <Route path="/shubh-muhurat" element={<ShubhMuhurat />} />
-          <Route path="/panchang" element={<Panchang />} />
-          <Route path="/eclipse" element={<Eclipse />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/name-correction" element={<NameCorrection />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/kundli-milan" element={<KundliMilan />} />
-          <Route path="/calculators" element={<Calculators />} />
-          <Route path="/blog" element={<Blog />} />
+            {/* 🔢 Calculators */}
+            <Route path="/numerology" element={<Numerology />} />
+            <Route path="/vaastu-dosh" element={<VaastuDosh />} />
 
+              {/* Dynamic Horoscope Route */}
+              <Route path="/horoscope/:signDay" element={<HoroscopeWrapper />} />
 
-          {/* 🌸 astrology services pages BLOGSSSSS */}
-          <Route path="/sukh-samridhi" element={<SukhSamridhi />} />
-          <Route path="/kundli-analysis" element={<KundliAnalysis />} />
-          <Route path="/dasha-analysis" element={<DashaAnalysis />} />
-          <Route path="/gemstone-suggestion" element={<GemstoneSuggestion />} />
-          <Route path="/marriage-yog" element={<MarriageYog />} />
-          <Route path="/pitru-dosh" element={<PitruDosh />} />
-          <Route path="/santan-upay" element={<SantanUpay />} />
-          <Route path="/business-upay" element={<BusinessUpay />} />
-          <Route path="/evil-eye" element={<EvilEye />} />
+            {/* 🔮 Single Input Calculators */}
+<Route path="/calculator/nakshatra" element={<Nakshatra />} />
+<Route path="/calculator/dasha" element={<Dasha />} />
+<Route path="/calculator/mangal-dosh" element={<MangalDosh />} />
+<Route path="/calculator/kaal-sarp" element={<KaalSarp />} />
+<Route path="/calculator/pitra-dosh" element={<PitraDosh />} />
+<Route path="/calculator/raahu-ketu" element={<RaahuKetu />} />
+<Route path="/calculator/unlucky-color" element={<UnluckyColor />} />
+<Route path="/calculator/unlucky-date" element={<UnluckyDate />} />
+<Route path="/calculator/sade-saati" element={<SaadeSaati />} />
+<Route path="/calculator/fav-alphabet" element={<FavAlphabet />} />
+<Route path="/calculator/kundali" element={<Kundali />} />
+<Route path="/calculator/laal-kitab" element={<LaalKitab />} />
+<Route path="/calculator/lagna" element={<Lagna />} />
+<Route path="/calculator/lucky-color" element={<LuckyColor />} />
+<Route path="/calculator/lucky-date" element={<LuckyDate />} />
+<Route path="/calculator/lucky-number" element={<LuckyNumber />} />
+<Route path="/calculator/lucky-rudraksha" element={<LuckyRudraksha />} />
+<Route path="/calculator/lucky-vehicle-number" element={<LuckyVehicleNumber />} />
+<Route path="/calculator/moon-sign" element={<MoonSign />} />
 
-
-          {/* 🌸 Festivals */}
-          <Route path="/festivals" element={<FestivalsSection />} />
-          <Route path="/festivals/:name" element={<FestivalDetail />} />
-
-          <Route path="/numerology" element={<Numerology />} />
-          <Route path="/vaastu-dosh" element={<VaastuDosh />} />
-
-          {/* ♈ Horoscope Individual Pages */}
-          <Route path="/horoscope/aries" element={<Aries />} />
-          <Route path="/horoscope/gemini" element={<Gemini />} />
-          <Route path="/horoscope/cancer" element={<Cancer />} />
-          <Route path="/horoscope/leo" element={<Leo />} />
-          <Route path="/horoscope/virgo" element={<Virgo />} />
-          <Route path="/horoscope/libra" element={<Libra />} />
-          <Route path="/horoscope/scorpio" element={<Scorpio />} />
-          <Route path="/horoscope/sagittarius" element={<Sagittarius />} />
-          <Route path="/horoscope/capricorn" element={<Capricorn />} />
-          <Route path="/horoscope/aquarius" element={<Aquarius />} />
-          <Route path="/horoscope/pisces" element={<Pisces />} />
-
-          {/* 🔮 Single Input Calculators */}
-          <Route path="/calculator/nakshatra" element={<Nakshatra />} />
-          <Route path="/calculator/dasha" element={<Dasha />} />
-          <Route path="/calculator/mangal-dosh" element={<MangalDosh />} />
-          <Route path="/calculator/kaal-sarp" element={<KaalSarp />} />
-          <Route path="/calculator/pitra-dosh" element={<PitraDosh />} />
-          <Route path="/calculator/raahu-ketu" element={<RaahuKetu />} />
-          <Route path="/calculator/unlucky-color" element={<UnluckyColor />} />
-          <Route path="/calculator/unlucky-date" element={<UnluckyDate />} />
-          <Route path="/calculator/sade-saati" element={<SaadeSaati />} />
-          <Route path="/calculator/fav-alphabet" element={<FavAlphabet />} />
-          <Route path="/calculator/kundali" element={<Kundali />} />
-          <Route path="/calculator/laal-kitab" element={<LaalKitab />} />
-          <Route path="/calculator/lagna" element={<Lagna />} />
-          <Route path="/calculator/lucky-color" element={<LuckyColor />} />
-          <Route path="/calculator/lucky-date" element={<LuckyDate />} />
-          <Route path="/calculator/lucky-number" element={<LuckyNumber />} />
-          <Route path="/calculator/lucky-rudraksha" element={<LuckyRudraksha />} />
-          <Route path="/calculator/lucky-vehicle-number" element={<LuckyVehicleNumber />} />
-          <Route path="/calculator/moon-sign" element={<MoonSign />} />
-
-
-
-          <Route path="/yantras/sriYantra" element={<SriYantra />} />
-          <Route path="/yantras/kuberYantra" element={<KuberYantra />} />
-          <Route path="/yantras/lakshmiYantra" element={<LakshmiYantra />} />
-          <Route path="/yantras/ganeshYantra" element={<GaneshYantra />} />
-          <Route path="/yantras/hanumanYantra" element={<HanumanYantra />} />
-          <Route path="/yantras/durgaYantra" element={<DurgaYantra />} />
-          <Route path="/yantras/mahamrityunjayaYantra" element={<MahamrityunjayaYantra />} />
-          <Route path="/yantras/saraswatiYantra" element={<SaraswatiYantra />} />
-          <Route path="/yantras/shivaYantra" element={<ShivaYantra />} />
-          <Route path="/yantras/navagrahaYantra" element={<NavagrahaYantra />} />
-          <Route path="/yantras/siddhSuryaYantra" element={<SiddhSuryaYantra />} />
-          <Route path="/yantras/siddhChandraYantra" element={<SiddhChandraYantra />} />
-          <Route path="/yantras/siddhBrihaspatiYantra" element={<SiddhBrihaspatiYantra />} />
-          <Route path="/yantras/siddhShukraYantra" element={<SiddhShukraYantra />} />
-          <Route path="/yantras/siddhShaniYantra" element={<SiddhShaniYantra />} />
-          <Route path="/yantras/siddhRahuYantra" element={<SiddhRahuYantra />} />
-          <Route path="/yantras/siddhKetuYantra" element={<SiddhKetuYantra />} />
-          <Route path="/yantras/siddhSarvKaryaSiddhiYantra" element={<SiddhSarvKaryaSiddhiYantra />} />
-          <Route path="/yantras/rudrakshMala" element={<RudrakshMala />} />
-          <Route path="/yantras/haldiMala" element={<HaldiMala />} />
-          <Route path="/yantras/safedMotiMala" element={<SafedMotiMala />} />
+{/* 💞 Dual Input Calculators */}
+<Route path="/calculator/love" element={<Love />} />
+<Route path="/calculator/flame" element={<Flame />} />
+<Route path="/calculator/match-making" element={<MatchMaking />} />
 
 
 
 
-          {/* 💞 Dual Input Calculators */}
-          <Route path="/calculator/love" element={<Love />} />
-          <Route path="/calculator/flame" element={<Flame />} />
-          <Route path="/calculator/match-making" element={<MatchMaking />} />
+            {/* 🕉️ Yantras */}
+            <Route path="/yantras/sriYantra" element={<SriYantra />} />
+            <Route path="/yantras/kuberYantra" element={<KuberYantra />} />
+            <Route path="/yantras/lakshmiYantra" element={<LakshmiYantra />} />
+            <Route path="/yantras/ganeshYantra" element={<GaneshYantra />} />
+            <Route path="/yantras/hanumanYantra" element={<HanumanYantra />} />
+            <Route path="/yantras/durgaYantra" element={<DurgaYantra />} />
+            <Route path="/yantras/mahamrityunjayaYantra" element={<MahamrityunjayaYantra />} />
+            <Route path="/yantras/saraswatiYantra" element={<SaraswatiYantra />} />
+            <Route path="/yantras/shivaYantra" element={<ShivaYantra />} />
+            <Route path="/yantras/navagrahaYantra" element={<NavagrahaYantra />} />
+            <Route path="/yantras/siddhSuryaYantra" element={<SiddhSuryaYantra />} />
+            <Route path="/yantras/siddhChandraYantra" element={<SiddhChandraYantra />} />
+            <Route path="/yantras/siddhBrihaspatiYantra" element={<SiddhBrihaspatiYantra />} />
+            <Route path="/yantras/siddhShukraYantra" element={<SiddhShukraYantra />} />
+            <Route path="/yantras/siddhShaniYantra" element={<SiddhShaniYantra />} />
+            <Route path="/yantras/siddhRahuYantra" element={<SiddhRahuYantra />} />
+            <Route path="/yantras/siddhKetuYantra" element={<SiddhKetuYantra />} />
+            <Route path="/yantras/siddhSarvKaryaSiddhiYantra" element={<SiddhSarvKaryaSiddhiYantra />} />
+            <Route path="/yantras/rudrakshMala" element={<RudrakshMala />} />
+            <Route path="/yantras/haldiMala" element={<HaldiMala />} />
+            <Route path="/yantras/safedMotiMala" element={<SafedMotiMala />} />
 
-          {/* 💞 Shubh Muhurat */}
-          <Route path="/muhurat/:type" element={<MuhuratDates />} />
-          <Route path="/muhurat/:type/:date" element={<MuhuratDetail />} />
+            {/* 💫 Muhurat */}
+            <Route path="/muhurat/:type" element={<MuhuratDates />} />
+            <Route path="/muhurat/:type/:date" element={<MuhuratDetail />} />
 
-          <Route path="/gallery" element={<GalleryPage />} />
+            {/* 📸 Gallery */}
+            <Route path="/gallery" element={<GalleryPage />} />
 
-          {/* 🚫 Fallback */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <ChatBox />
-      </TooltipProvider>
-    </QueryClientProvider>
-  </LanguageProvider>
+            {/* 🚫 Fallback */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+
+          <ChatBox />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </LanguageProvider>
+  </HelmetProvider>
 );
 
 export default App;

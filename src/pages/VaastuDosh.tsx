@@ -25,10 +25,11 @@ const initialDoshList = [
 ];
 
 const VaastuDosh = () => {
-  const [selectedDosh, setSelectedDosh] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [result, setResult] = useState<any>(null);
+  const [selectedDosh, setSelectedDosh] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const filteredList = initialDoshList.filter((item) =>
     item.toLowerCase().includes(searchTerm.toLowerCase())
@@ -36,22 +37,30 @@ const VaastuDosh = () => {
 
   useEffect(() => {
     if (!selectedDosh) return;
+
     const fetchRemedy = async () => {
       setLoading(true);
       setResult(null);
+      setError("");
       try {
-        const response = await fetch("/.netlify/functions/vaastuRemedy", {
+        const response = await fetch("/api/vaastu", {
           method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ issue: selectedDosh }),
         });
+
+        if (!response.ok) throw new Error("Failed to fetch");
+
         const data = await response.json();
-        setResult(data);
+        setResult(data || {});
       } catch (err) {
         console.error("❌ Vaastu remedy API error:", err);
+        setError("Failed to fetch remedies. Please try again.");
       } finally {
         setLoading(false);
       }
     };
+
     fetchRemedy();
   }, [selectedDosh]);
 
@@ -99,7 +108,11 @@ const VaastuDosh = () => {
             </p>
           )}
 
-          {result && (
+          {error && (
+            <p className="text-center text-red-600 mb-5">{error}</p>
+          )}
+
+          {!loading && !error && result && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,10 +126,10 @@ const VaastuDosh = () => {
 
                   <div className="space-y-5 text-lg text-muted-foreground">
                     <p>
-                      <strong>🚫 Cause:</strong> {result.cause}
+                      <strong>🚫 Cause:</strong> {result.cause || "Not available"}
                     </p>
                     <p>
-                      <strong>🔍 Effect:</strong> {result.effect}
+                      <strong>🔍 Effect:</strong> {result.effect || "Not available"}
                     </p>
 
                     <div>
@@ -124,9 +137,9 @@ const VaastuDosh = () => {
                         🕉️ Remedies, Puja & Yantras
                       </h3>
                       <ul className="list-disc ml-6 space-y-1">
-                        {result.remedies?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
+                        {result.remedies?.length
+                          ? result.remedies.map((r, i) => <li key={i}>{r}</li>)
+                          : <li>Not available</li>}
                       </ul>
                     </div>
 
@@ -135,9 +148,9 @@ const VaastuDosh = () => {
                         🌙 Astrological & Mantra Solutions
                       </h3>
                       <ul className="list-disc ml-6 space-y-1">
-                        {result.astrology?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
+                        {result.astrology?.length
+                          ? result.astrology.map((r, i) => <li key={i}>{r}</li>)
+                          : <li>Not available</li>}
                       </ul>
                     </div>
 
@@ -146,9 +159,9 @@ const VaastuDosh = () => {
                         ⚠️ Avoid These
                       </h3>
                       <ul className="list-disc ml-6 space-y-1">
-                        {result.avoid?.map((r: string, i: number) => (
-                          <li key={i}>{r}</li>
-                        ))}
+                        {result.avoid?.length
+                          ? result.avoid.map((r, i) => <li key={i}>{r}</li>)
+                          : <li>Not available</li>}
                       </ul>
                     </div>
                   </div>

@@ -36,32 +36,23 @@ const SingleCalculatorTemplate = ({ title, prompt }: CalculatorTemplateProps) =>
       setError(null);
       setResult(null);
 
-      const baseUrl = import.meta.env.DEV
-        ? "http://localhost:8888/.netlify/functions"
-        : "/.netlify/functions";
-
-      const res = await fetch(`${baseUrl}/calculator`, {
+      // ✅ Call Express API instead of Netlify function
+      const res = await fetch("/api/openai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          prompt,
-          form,
+          message: `${prompt}\n\nName: ${form.name}\nDOB: ${form.dob}\nTime: ${form.time || "Not provided"}\nCity: ${form.city}\nCountry: ${form.country}`,
         }),
       });
 
-      const text = await res.text();
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch {
-        throw new Error("Invalid response format from server");
-      }
+      const data = await res.json();
 
-      if (!res.ok || !data.success) throw new Error(data.error || "Failed");
+      if (!res.ok) throw new Error(data.reply || "Failed to get response from server");
 
-      setResult(data.result);
+      setResult(data.reply || "No result found.");
     } catch (err: any) {
-      setError(err.message);
+      console.error(err);
+      setError(err.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }

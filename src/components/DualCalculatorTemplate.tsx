@@ -4,7 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
-const DualCalculatorTemplate = ({ title, prompt }: { title: string; prompt: string }) => {
+const DualCalculatorTemplate = ({
+  title,
+  prompt,
+}: {
+  title: string;
+  prompt: string;
+}) => {
   const [person1, setPerson1] = useState({ name: "", dob: "", city: "", country: "" });
   const [person2, setPerson2] = useState({ name: "", dob: "", city: "", country: "" });
   const [loading, setLoading] = useState(false);
@@ -25,7 +31,18 @@ const DualCalculatorTemplate = ({ title, prompt }: { title: string; prompt: stri
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: `${prompt}\n\nPerson 1:\nName: ${person1.name}\nDOB: ${person1.dob}\nCity: ${person1.city}\nCountry: ${person1.country}\n\nPerson 2:\nName: ${person2.name}\nDOB: ${person2.dob}\nCity: ${person2.city}\nCountry: ${person2.country}`,
+          message: `${prompt}
+Person 1:
+Name: ${person1.name}
+DOB: ${person1.dob}
+City: ${person1.city}
+Country: ${person1.country}
+
+Person 2:
+Name: ${person2.name}
+DOB: ${person2.dob}
+City: ${person2.city}
+Country: ${person2.country}`,
         }),
       });
 

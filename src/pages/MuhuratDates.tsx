@@ -19,10 +19,13 @@ export default function MuhuratDates() {
   useEffect(() => {
     const fetchDates = async () => {
       try {
-        const res = await fetch(`/.netlify/functions/getMuhuratDates?type=${type}`);
-        const data = await res.json();
+        setLoading(true);
+        const res = await fetch(`/api/muhurat?type=${type}`);
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data: DateInfo[] = await res.json();
         setDates(data);
       } catch (err) {
+        console.error(err);
         setError("Failed to fetch muhurat dates.");
       } finally {
         setLoading(false);
