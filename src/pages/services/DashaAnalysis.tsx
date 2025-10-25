@@ -1,17 +1,18 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const DashAnalysis: React.FC = () => {
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12 px-6">
         <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-          {/* Image Placeholder */}
-          <div className="w-full h-72 bg-gray-200 flex items-center justify-center text-gray-400 text-lg">
-            Image coming soon
-          </div>
+          
+          <div className="mb-8">
+          <img
+            src="/images/dasha.jpg" // 👈 directly from public/images/
+            alt="Dasha Analysis"
+            className="w-full h-auto"
+          />
+        </div>
 
           <div className="p-8">
             <h1 className="text-3xl font-bold text-purple-700 mb-4">
@@ -67,7 +68,6 @@ const DashAnalysis: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -20,10 +20,10 @@ const AstrologyServices: React.FC = () => {
     },
     {
       id: 2,
-      title: "वास्तु दोष निवारण",
-      image: "/images/vaastu.jpg",
-      description: "घर या कार्यालय के वास्तु दोष दूर करने के प्रभावी उपाय।",
-      link: "/vaastu-dosh",
+      title: "Maanglik दोष निवारण",
+      image: "/images/maanglikDosh.jpg",
+      description: "जानिए मंगलीक दोष के प्रभाव और निवारण के उपाय।",
+      link: "/maanglik-dosh",
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ const AstrologyServices: React.FC = () => {
     {
       id: 7,
       title: "पितृ दोष निवारण",
-      image: "/images/pitru-dosh.jpg",
+      image: "/images/pitruDosh.jpg",
       description: "पितृ दोष को दूर करने के प्रभावी उपाय।",
       link: "/pitru-dosh",
     },
@@ -77,7 +77,7 @@ const AstrologyServices: React.FC = () => {
     {
       id: 10,
       title: "नजर उतारना / Evil Eye",
-      image: "/images/evil-eye.jpg",
+      image: "/images/evilEye.jpg",
       description: "नजर उतारने के प्रभावी उपाय।",
       link: "/evil-eye",
     },

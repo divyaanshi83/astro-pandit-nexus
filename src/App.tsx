@@ -23,7 +23,7 @@ import ShubhMuhurat from "./pages/ShubhMuhurat";
 import MuhuratDates from "@/pages/MuhuratDates";
 import MuhuratDetail from "@/pages/MuhuratDetail";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+//import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Blog from "@/pages/Blog";
 import GalleryPage from "@/pages/GalleryPage";
@@ -42,6 +42,7 @@ import PitruDosh from "@/pages/services/PitruDosh";
 import SantanUpay from "@/pages/services/SantanUpay";
 import BusinessUpay from "@/pages/services/BusinessUpay";
 import EvilEye from "./pages/services/EvilEye";
+import ManglikDosh from "@/pages/services/ManglikDosh";
 
 // 🔮 Calculators (single input)
 import Nakshatra from "@/pages/calculators/Nakshatra";
@@ -148,7 +149,6 @@ const App = () => (
             <Route path="/store" element={<Store />} />
             <Route path="/name-correction" element={<NameCorrection />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/kundli-milan" element={<KundliMilan />} />
             <Route path="/calculators" element={<Calculators />} />
             <Route path="/blog" element={<Blog />} />
@@ -163,6 +163,7 @@ const App = () => (
             <Route path="/santan-upay" element={<SantanUpay />} />
             <Route path="/business-upay" element={<BusinessUpay />} />
             <Route path="/evil-eye" element={<EvilEye />} />
+            <Route path="/manglik-dosh" element={<ManglikDosh />} />
 
             {/* 🌸 Festivals */}
             <Route path="/festivals" element={<FestivalsSection />} />

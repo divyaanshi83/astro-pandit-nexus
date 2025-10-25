@@ -1,17 +1,18 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const GemstoneSuggestions: React.FC = () => {
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 py-12 px-6">
         <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-          {/* Blank Image Box */}
-          <div className="w-full h-72 bg-gray-200 flex items-center justify-center text-gray-400 text-lg">
-            Image coming soon
-          </div>
+          
+          <div className="mb-8">
+          <img
+            src="/images/gemstone.jpg" // 👈 directly from public/images/
+            alt="Gemstone Suggestions"
+            className="w-full h-auto"
+          />
+        </div>
 
           <div className="p-8">
             {/* Heading */}
@@ -114,7 +115,6 @@ const GemstoneSuggestions: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
