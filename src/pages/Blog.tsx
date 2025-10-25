@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -47,7 +45,6 @@ export default function Blog() {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-[#FFF9F0] py-16 px-6">
         <h1 className="text-5xl font-bold text-center text-orange-900 mb-10">
           📝 Blog
@@ -93,7 +90,6 @@ export default function Blog() {
       </div>
 
       <FloatingButtons />
-      <Footer />
     </>
   );
 }

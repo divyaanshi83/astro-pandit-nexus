@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Button } from "@/components/ui/button";
 
@@ -51,7 +49,6 @@ const yantras = [
 export default function Store() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
 
       <main className="container mx-auto py-16 px-4">
         <h1 className="text-4xl md:text-5xl font-playfair font-bold text-center text-foreground mb-12">
@@ -90,7 +87,6 @@ export default function Store() {
         </div>
       </main>
 
-      <Footer />
       <FloatingButtons />
     </div>
   );

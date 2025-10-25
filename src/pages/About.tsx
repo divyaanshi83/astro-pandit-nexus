@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, BookOpen, Star } from "lucide-react";
@@ -10,7 +8,6 @@ import { useLanguage } from "@/context/LanguageContext";
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
 
       <main className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -164,7 +161,6 @@ const About = () => {
         </div>
       </main>
 
-      <Footer />
       <FloatingButtons />
     </div>
   );

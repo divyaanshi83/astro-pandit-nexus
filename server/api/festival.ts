@@ -35,11 +35,14 @@ router.get("/generate", async (req, res) => {
 
     const content = response.choices[0]?.message?.content ?? "";
 
-    // Always return a JSON object
     res.json({ content });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    res.status(500).json({ error: err.message || "Server error" });
+    if (err instanceof Error) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.status(500).json({ error: "Server error" });
+    }
   }
 });
 

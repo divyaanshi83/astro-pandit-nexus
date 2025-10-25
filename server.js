@@ -1,4 +1,3 @@
-// server.js
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
@@ -6,56 +5,73 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import OpenAI from "openai";
-
-// Festival router
-import festivalRouter from "./server/api/festival.js";
+import festivalRouter from "./server/api/festival.js"; // ✅ Festival route
 
 dotenv.config();
 
+// -------------------------------
+// 🧭 Setup paths
+// -------------------------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// -------------------------------
+// 🚀 App initialization
+// -------------------------------
 const app = express();
-app.use(cors());
+
+// ✅ Allow frontend requests (CORS fix)
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your Vite frontend
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
-// ------------------------
-// OpenAI client
-// ------------------------
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// -------------------------------
+// 🧠 OpenAI client
+// -------------------------------
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 // ======================================================
 // 🔮 SHUBH MUHURAT APIs
 // ======================================================
-
-// Example Muhurat Dates API
 app.get("/api/muhurat/dates", async (req, res) => {
   const type = req.query.type || "general";
   console.log(`📅 Muhurat request for: ${type}`);
+
   try {
+    // Mock data (replace with real data or API later)
     const data = [
       { date: "15 March 2025", description: `Auspicious day for ${type}` },
       { date: "27 April 2025", description: "Favorable planetary alignment" },
     ];
     res.json({ success: true, type, dates: data });
   } catch (error) {
-    console.error(error);
+    console.error("❌ Muhurat error:", error);
     res.status(500).json({ success: false, error: "Failed to fetch muhurat dates" });
   }
 });
 
-// Muhurat Details API
 app.get("/api/muhurat/details", async (req, res) => {
   const { type, date } = req.query;
   console.log(`🪔 Muhurat details for ${type} on ${date}`);
+
   try {
-    res.json({
+    const details = {
       success: true,
+      type,
+      date,
       timings: "06:45 AM – 10:30 AM, 02:15 PM – 05:00 PM",
       pujaSteps: "Sankalp, Kalash Sthapana, Deep Daan, Prasad Vitran",
-    });
+    };
+    res.json(details);
   } catch (error) {
-    console.error(error);
+    console.error("❌ Muhurat details error:", error);
     res.status(500).json({ success: false, error: "Failed to fetch muhurat details" });
   }
 });
@@ -66,7 +82,8 @@ app.get("/api/muhurat/details", async (req, res) => {
 app.get("/api/horoscope", async (req, res) => {
   try {
     const { sign, day } = req.query;
-    if (!sign || !day) return res.status(400).json({ success: false, error: "Missing sign or day parameter." });
+    if (!sign || !day)
+      return res.status(400).json({ success: false, error: "Missing sign or day parameter." });
 
     const horoscopeText = `Your ${day} horoscope for ${sign} is: Today is a great day for new beginnings.`;
     res.json({ success: true, horoscope: horoscopeText });
@@ -82,6 +99,7 @@ app.get("/api/horoscope", async (req, res) => {
 app.post("/api/numerology", async (req, res) => {
   try {
     const { name, dob, birthTime, city, country } = req.body;
+
     const prompt = `
 आप एक अनुभवी वैदिक अंक ज्योतिष विशेषज्ञ हैं।
 नीचे दी गई जानकारी के आधार पर व्यक्ति का संपूर्ण विश्लेषण हिंदी में प्रस्तुत करें।
@@ -113,7 +131,7 @@ app.post("/api/numerology", async (req, res) => {
       ],
     });
 
-    const analysis = completion.choices[0].message.content.trim();
+    const analysis = completion.choices[0].message?.content?.trim() ?? "";
     res.json({ success: true, analysis });
   } catch (err) {
     console.error("Numerology Error:", err);
@@ -145,7 +163,7 @@ Write in a spiritually insightful but simple tone. Use emojis for section header
       messages: [{ role: "user", content: prompt }],
     });
 
-    const text = completion?.choices?.[0]?.message?.content?.trim();
+    const text = completion?.choices?.[0]?.message?.content?.trim() ?? "";
     res.json({ success: true, advice: text });
   } catch (err) {
     console.error("Vaastu Error:", err);
@@ -156,7 +174,7 @@ Write in a spiritually insightful but simple tone. Use emojis for section header
 // ======================================================
 // 📜 Panchang API
 // ======================================================
-app.get("/api/panchang", async (req, res) => {
+app.get("/api/panchang", async (_req, res) => {
   try {
     const today = new Date().toLocaleDateString("en-IN", {
       weekday: "long",
@@ -182,9 +200,9 @@ Return JSON with exact keys and realistic values.
 
     let parsed;
     try {
-      parsed = JSON.parse(completion.choices[0].message.content.trim());
+      parsed = JSON.parse(completion.choices[0].message?.content?.trim() ?? "{}");
     } catch {
-      const match = completion.choices[0].message.content.match(/\{[\s\S]*\}/);
+      const match = completion.choices[0].message?.content?.match(/\{[\s\S]*\}/);
       parsed = match ? JSON.parse(match[0]) : { overview: "Error parsing Panchang data." };
     }
 
@@ -196,19 +214,22 @@ Return JSON with exact keys and realistic values.
 });
 
 // ======================================================
-// 🎉 Festival API (imported router)
+// 🎉 Festival API
 // ======================================================
 app.use("/api/festival", festivalRouter);
 
 // ======================================================
-// 🏡 Serve React Frontend
+// 🏡 Serve Frontend
 // ======================================================
-const frontendPath = path.join(__dirname, "dist"); // or "build" if using CRA
+const frontendPath = path.join(__dirname, "dist");
 app.use(express.static(frontendPath));
-app.get("*", (_, res) => {
+
+app.get("*", (_req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
+// ======================================================
+// 🚀 Start Server
 // ======================================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

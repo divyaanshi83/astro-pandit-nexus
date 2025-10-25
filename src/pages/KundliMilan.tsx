@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,7 +17,6 @@ const KundliMilan = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       
       <main className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -102,7 +99,6 @@ const KundliMilan = () => {
         </div>
       </main>
 
-      <Footer />
       <FloatingButtons />
     </div>
   );

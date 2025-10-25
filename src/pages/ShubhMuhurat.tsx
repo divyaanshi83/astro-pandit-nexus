@@ -28,7 +28,7 @@ const muhuratTypes = [
   { name: "Mundan", path: "mundan", description: "Auspicious dates for baby's first haircut" },
 ];
 
-// ✅ Base API URL from .env
+// ✅ Base API URL from .env or fallback
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 const ShubhMuhurat: React.FC = () => {
@@ -44,12 +44,18 @@ const ShubhMuhurat: React.FC = () => {
     setError(null);
     setDetails(null);
     setSelectedType(type);
-    try {
-      console.log(`🔍 Fetching Muhurat Dates from: ${API_BASE}/api/muhurat?type=${type}`);
-      const res = await fetch(`${API_BASE}/api/muhurat?type=${encodeURIComponent(type)}`);
-      const data = await res.json();
 
-      if (!res.ok || !data.success) throw new Error("Invalid response from server");
+    try {
+      console.log(`🔍 Fetching Muhurat Dates from: ${API_BASE}/api/muhurat/dates?type=${type}`);
+      const res = await fetch(`${API_BASE}/api/muhurat/dates?type=${encodeURIComponent(type)}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+
+      const data = await res.json();
+      if (!data.success) throw new Error("Invalid response from server");
 
       setDates(
         data.dates.map((d: any) => ({
@@ -73,14 +79,30 @@ const ShubhMuhurat: React.FC = () => {
   const fetchMuhuratDetails = async (type: string, date: string) => {
     setLoading(true);
     setError(null);
+
     try {
       console.log(`🔍 Fetching Muhurat Details from: ${API_BASE}/api/muhurat/details?type=${type}&date=${date}`);
-      const res = await fetch(`${API_BASE}/api/muhurat/details?type=${encodeURIComponent(type)}&date=${encodeURIComponent(date)}`);
+      const res = await fetch(
+        `${API_BASE}/api/muhurat/details?type=${encodeURIComponent(type)}&date=${encodeURIComponent(date)}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+
       const data = await res.json();
+      if (!data.success) throw new Error("Invalid response from server");
 
-      if (!res.ok || !data.success) throw new Error("Invalid response from server");
-
-      setDetails(data.details);
+      setDetails({
+        timings: data.timings,
+        pujaSteps: data.pujaSteps,
+        mantra: data.mantra || "Om Shubham Karoti Kalyanam",
+        donation: data.donation || "Donate food or sweets to Brahmins or needy children.",
+        bestTime: data.bestTime || "Morning is highly auspicious between 8:00 AM to 11:30 AM",
+        location: data.location || "Preferably at home or nearby temple with family blessings.",
+      });
     } catch (err) {
       console.error("❌ Error fetching details:", err);
       setError("⚠️ Unable to load detailed Muhurat info. Showing default sample.");
