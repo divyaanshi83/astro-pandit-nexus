@@ -25,7 +25,6 @@ import MuhuratDetail from "@/pages/MuhuratDetail";
 import About from "./pages/About";
 //import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import Blog from "@/pages/Blog";
 import GalleryPage from "@/pages/GalleryPage";
 
 // 🌸 Festival Pages
@@ -151,7 +150,6 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/kundli-milan" element={<KundliMilan />} />
             <Route path="/calculators" element={<Calculators />} />
-            <Route path="/blog" element={<Blog />} />
 
             {/* 🌸 Services */}
             <Route path="/sukh-samridhi" element={<SukhSamridhi />} />

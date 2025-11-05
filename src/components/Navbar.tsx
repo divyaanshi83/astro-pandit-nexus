@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-
-// ✅ Import your logo
 import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
@@ -62,6 +60,7 @@ const Navbar = () => {
             </span>
           </Link>
 
+          {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-4 text-sm">
             <Link to="/" className="nav-link">{t.home}</Link>
             <Link to="/horoscope" className="nav-link">{t.horoscope}</Link>
@@ -73,14 +72,31 @@ const Navbar = () => {
             <Link to="/eclipse" className="nav-link">{t.eclipse}</Link>
             <Link to="/numerology" className="nav-link">{t.numerology}</Link>
             <Link to="/vaastu-dosh" className="nav-link">{t.vaastu}</Link>
-            <Link to="/gallery" className="nav-link">{language === "en" ? "Gallery" : "गैलरी"}</Link>
+            <Link to="/gallery" className="nav-link">
+              {language === "en" ? "Gallery" : "गैलरी"}
+            </Link>
             <Link to="/store" className="nav-link">{t.store}</Link>
             <Link to="/about" className="nav-link">{t.about}</Link>
             <Link to="/contact" className="nav-link">{t.contact}</Link>
-            <Link to="/blog" className="nav-link">{t.blog}</Link>
+
+            {/* ✅ External Blog Link */}
+            <a
+              href="https://shriramjyotishsadan.in/Blog.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link"
+            >
+              {t.blog}
+            </a>
           </div>
 
-          <Button variant="outline" size="sm" onClick={toggleLanguage} className="gap-2">
+          {/* Language Toggle */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleLanguage}
+            className="gap-2"
+          >
             <Globe className="h-4 w-4" />
             {language === "en" ? "EN" : "हिं"}
           </Button>
