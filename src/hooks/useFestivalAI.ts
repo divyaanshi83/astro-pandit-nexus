@@ -15,13 +15,20 @@ export default function useFestivalAI(festivalName: string) {
       setError(null);
 
       try {
-        const res = await fetch(`/api/festival/generate?festival=${encodeURIComponent(festivalName)}`);
+        // 🔥 IMPORTANT: updated to PHP endpoint
+        const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
+const res = await fetch(`${API_BASE}/api/festival/generate?festival=${encodeURIComponent(festivalName)}`);
+
         const json = await res.json();
 
         if (!res.ok) throw new Error(json.error || "Failed to fetch festival info");
 
-        // Parse OpenAI text into FestivalDetails
-        const lines = (json.content as string).split("\n").filter(Boolean);
+        // The PHP backend returns entire content as a single string
+        const content = json.choices?.[0]?.message?.content || "";
+
+        // Your existing format
+        const lines = content.split("\n").filter(Boolean);
+
         const fd: FestivalDetails = {
           name: festivalName,
           description: lines[0] || "",

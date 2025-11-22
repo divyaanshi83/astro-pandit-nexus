@@ -43,22 +43,27 @@ const Numerology = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await fetch("/.netlify/functions/numerology", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      setResult(data);
-    } catch (error) {
-      console.error("❌ Numerology API error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const response = await fetch("/api/numerology.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    setResult(data);
+  } catch (error) {
+    console.error("❌ Numerology API error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-background">

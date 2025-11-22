@@ -1,28 +1,8 @@
 import { useEffect, useState } from "react";
 
-// ✅ Mock data for development
-const mockHoroscope = (sign: string, day: string) => ({
-  success: true,
-  sign,
-  day,
-  horoscope: {
-    prediction: `Today is a lucky day for ${sign} (${day})! Focus on your health, relationships, and finances.`,
-    luckyColors: ["Gold", "Orange", "White"],
-    luckyNumbers: [1, 5, 9],
-    clothing: "Traditional attire like kurta-pajama or saree in warm colors.",
-    rituals: [
-      "Meditate for 15 minutes in the morning.",
-      "Light a ghee lamp at home to attract positive energy.",
-      "Offer flowers to Lord Sun for success and vitality."
-    ],
-    advice:
-      "Stay optimistic, avoid conflicts, and take time for self-care. Trust your intuition today."
-  }
-});
-
 interface HoroscopeTemplateProps {
   sign: string;
-  initialDay?: string;
+  initialDay?: string; // today / weekly / monthly
 }
 
 const HoroscopeTemplate = ({ sign, initialDay }: HoroscopeTemplateProps) => {
@@ -31,39 +11,34 @@ const HoroscopeTemplate = ({ sign, initialDay }: HoroscopeTemplateProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // ------------------------------
+  // FETCH HOROSCOPE
+  // ------------------------------
   const fetchHoroscope = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // ✅ Use mock in dev
-      if (import.meta.env.DEV) {
-        const result = mockHoroscope(sign, day);
-        setData(result);
-        return;
-      }
-
-      // ✅ Real fetch in production
       const response = await fetch(
-        `/api/horoscope?sign=${encodeURIComponent(sign.toLowerCase())}&day=${encodeURIComponent(day)}`
+        `https://astroashupandit.com/api/horoscope.php?sign=${encodeURIComponent(
+          sign.toLowerCase()
+        )}&day=${encodeURIComponent(day)}`
       );
 
       const text = await response.text();
       let result;
+
       try {
         result = JSON.parse(text);
-      } catch (jsonErr) {
-        console.error("❌ JSON parse failed:", jsonErr, "\nRaw response:", text);
-        throw new Error("Invalid JSON returned from server.");
+      } catch (err) {
+        console.error("❌ JSON parse failed:", err, "\nRaw:", text);
+        throw new Error("Invalid JSON from server.");
       }
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || `Failed (${response.status})`);
-      }
+      if (!result.success) throw new Error(result.error || "API Error");
 
-      setData(result);
+      setData(result.horoscope);
     } catch (err: any) {
-      console.error("Error fetching horoscope:", err);
       setError(err.message || "Something went wrong.");
       setData(null);
     } finally {
@@ -75,80 +50,139 @@ const HoroscopeTemplate = ({ sign, initialDay }: HoroscopeTemplateProps) => {
     fetchHoroscope();
   }, [sign, day]);
 
-  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
+  const capitalize = (w: string) => w.charAt(0).toUpperCase() + w.slice(1);
 
+  // ------------------------------
+  // UI STARTS
+  // ------------------------------
   return (
-    <div className="max-w-3xl mx-auto text-center px-6 py-10">
-      <h1 className="text-4xl font-bold mb-6 text-purple-700">
-        {capitalize(sign)} Horoscope
+    <div className="max-w-3xl mx-auto px-6 py-12">
+
+      <h1 className="text-4xl font-bold text-center text-purple-700 mb-6">
+        {capitalize(sign)} Horoscope – {capitalize(day)}
       </h1>
 
-      {/* Day selection */}
-      <div className="flex justify-center gap-3 mb-8">
-        {["yesterday", "today", "tomorrow"].map((d) => (
+      {/* Day Tabs */}
+      <div className="flex justify-center gap-3 mb-10 flex-wrap">
+        {[
+          { label: "Yesterday", value: "yesterday" },
+          { label: "Today", value: "today" },
+          { label: "Tomorrow", value: "tomorrow" },
+          { label: "Weekly", value: "weekly" },
+          { label: "Monthly", value: "monthly" }
+        ].map((t) => (
           <button
-            key={d}
-            onClick={() => setDay(d)}
+            key={t.value}
+            onClick={() => setDay(t.value)}
             className={`px-4 py-2 rounded-xl border font-medium transition-all duration-200 ${
-              day === d
+              day === t.value
                 ? "bg-purple-600 text-white shadow-md scale-105"
                 : "bg-gray-200 hover:bg-gray-300 text-black"
             }`}
           >
-            {capitalize(d)}
+            {t.label}
           </button>
         ))}
       </div>
 
-      {/* Loading & Error */}
-      {loading && <p className="text-lg text-gray-500">🔮 Fetching your horoscope...</p>}
+      {/* LOADING */}
+      {loading && (
+        <p className="text-center text-lg text-gray-500">
+          🔮 Fetching detailed horoscope...
+        </p>
+      )}
+
+      {/* ERROR */}
       {error && (
-        <div className="bg-red-100 text-red-600 p-4 rounded-xl shadow-md max-w-lg mx-auto">
+        <div className="bg-red-100 text-red-700 rounded-xl p-4 shadow text-center">
           <p className="font-semibold">⚠️ {error}</p>
-          <p className="text-sm mt-1">Please check your API or try again later.</p>
         </div>
       )}
 
-      {/* Horoscope Data */}
+      {/* MAIN CONTENT */}
       {!loading && !error && data && (
-        <div className="text-left bg-white p-6 rounded-2xl shadow-lg space-y-4 leading-relaxed">
-          <p>
-            <strong>Date:</strong> {capitalize(day)}
-          </p>
-          <p>
-            <strong>Sign:</strong> {capitalize(sign)}
-          </p>
-          <p>
-            <strong>Prediction:</strong>
-            <span className="block mt-2 whitespace-pre-line text-gray-700">
-              {data.horoscope.prediction}
-            </span>
-          </p>
-          <p>
-            <strong>Lucky Colors:</strong> {data.horoscope.luckyColors.join(", ")}
-          </p>
-          <p>
-            <strong>Lucky Numbers:</strong> {data.horoscope.luckyNumbers.join(", ")}
-          </p>
-          <p>
-            <strong>Clothing Suggestion:</strong> {data.horoscope.clothing}
-          </p>
-          <p>
-            <strong>Rituals:</strong>
-            <ul className="list-disc list-inside mt-1 text-gray-700">
-              {data.horoscope.rituals.map((ritual: string, i: number) => (
-                <li key={i}>{ritual}</li>
+        <div className="space-y-8">
+
+          {/* PREDICTION */}
+          <Section title="🔮 Prediction" color="purple">
+            <p className="text-gray-700 whitespace-pre-line">{data.prediction}</p>
+          </Section>
+
+          {/* WHY */}
+          <Section title="✨ Why This Energy" color="blue">
+            <p className="text-gray-700">{data.why}</p>
+          </Section>
+
+          {/* WHAT TO DO */}
+          <Section title="🟢 What To Do Today" color="green">
+            <p className="text-gray-700">{data.whatToDo}</p>
+          </Section>
+
+          {/* WHAT TO AVOID */}
+          <Section title="🔴 What To Avoid" color="red">
+            <p className="text-gray-700">{data.whatToAvoid}</p>
+          </Section>
+
+          {/* WORSHIP */}
+          <Section title="🕉 Worship Recommendation" color="yellow">
+            <p className="text-gray-700">{data.worship}</p>
+          </Section>
+
+          {/* LUCKY DETAILS */}
+          <Section title="🍀 Lucky Details" color="orange">
+            <p><strong>Lucky Colors:</strong> {data.luckyColors?.join(", ")}</p>
+            <p><strong>Lucky Numbers:</strong> {data.luckyNumbers?.join(", ")}</p>
+            <p><strong>Lucky Direction:</strong> {data.luckyDirection}</p>
+            <p><strong>Lucky Time:</strong> {data.luckyTime}</p>
+          </Section>
+
+          {/* CLOTHING */}
+          <Section title="👗 Clothing Suggestion" color="pink">
+            <p className="text-gray-700">{data.clothing}</p>
+          </Section>
+
+          {/* RITUALS */}
+          <Section title="🪔 Rituals" color="indigo">
+            <ul className="list-disc list-inside text-gray-700">
+              {data.rituals?.map((r: string, i: number) => (
+                <li key={i}>{r}</li>
               ))}
             </ul>
-          </p>
-          <p>
-            <strong>Advice:</strong>
-            <span className="block mt-1 text-gray-700">{data.horoscope.advice}</span>
-          </p>
+          </Section>
+
+          {/* AFFIRMATION */}
+          <Section title="🌟 Daily Affirmation" color="teal">
+            <p className="italic text-gray-700">“{data.affirmation}”</p>
+          </Section>
+
+          {/* LOVE / HEALTH / CAREER */}
+          <div className="grid md:grid-cols-3 gap-4">
+            <Card title="❤️ Love" color="rose">{data.love}</Card>
+            <Card title="💚 Health" color="green">{data.health}</Card>
+            <Card title="💼 Career" color="blue">{data.career}</Card>
+          </div>
+
         </div>
       )}
     </div>
   );
 };
+
+// ------------------------------
+// REUSABLE COMPONENTS
+// ------------------------------
+const Section = ({ title, color, children }: any) => (
+  <section className="bg-white p-6 rounded-2xl shadow">
+    <h2 className={`text-xl font-bold mb-2 text-${color}-700`}>{title}</h2>
+    {children}
+  </section>
+);
+
+const Card = ({ title, color, children }: any) => (
+  <div className="bg-white p-6 rounded-2xl shadow">
+    <h3 className={`text-xl font-bold text-${color}-700 mb-1`}>{title}</h3>
+    <p className="text-gray-700">{children}</p>
+  </div>
+);
 
 export default HoroscopeTemplate;
