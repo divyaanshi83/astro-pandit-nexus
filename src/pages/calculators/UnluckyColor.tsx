@@ -1,7 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const UnluckyColor = () => {
@@ -12,9 +9,10 @@ const UnluckyColor = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <SingleCalculatorTemplate type="unlucky-color" />
-      <Footer />
+      <SingleCalculatorTemplate
+        title="Unlucky Color Checker 🎨"
+        prompt="Discover colors that may bring negativity. जानें कौन से रंग आपके लिए अशुभ हैं। Avoid colors that might reduce energy or luck."
+      />
     </div>
   );
 };

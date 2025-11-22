@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const Kundali = () => {
@@ -11,12 +9,11 @@ const Kundali = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+   
       <SingleCalculatorTemplate
         title="Kundali Calculator ♈"
         prompt="Generate your birth chart (Kundali) and explore planetary positions, houses, and astrological insights."
       />
-      <Footer />
     </div>
   );
 };

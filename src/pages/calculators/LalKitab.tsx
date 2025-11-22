@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const LaalKitab = () => {
@@ -11,12 +9,11 @@ const LaalKitab = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+   
       <SingleCalculatorTemplate
         title="Laal Kitab Remedies 📘"
         prompt="Discover Laal Kitab based astrological remedies for doshas, health, and financial growth."
       />
-      <Footer />
     </div>
   );
 };

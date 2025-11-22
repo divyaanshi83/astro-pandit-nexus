@@ -1,6 +1,5 @@
 import LuckyCalculatorTemplate from "./templates/LuckyCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import useSEO from "@/hooks/useSEO";
 
 const LuckyVehicleNumber = () => {
@@ -11,9 +10,9 @@ const LuckyVehicleNumber = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+     
       <LuckyCalculatorTemplate type="lucky-vehicle-number" />
-      <Footer />
+  
     </div>
   );
 };

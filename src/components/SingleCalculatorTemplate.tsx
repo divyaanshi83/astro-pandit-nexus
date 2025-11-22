@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 
 interface CalculatorTemplateProps {
@@ -60,7 +58,6 @@ const SingleCalculatorTemplate = ({ title, prompt }: CalculatorTemplateProps) =>
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col">
-      <Navbar />
 
       <main className="flex-grow container mx-auto px-6 py-12">
         <div className="text-center mb-10">
@@ -133,8 +130,6 @@ const SingleCalculatorTemplate = ({ title, prompt }: CalculatorTemplateProps) =>
           </div>
         )}
       </main>
-
-      <Footer />
       <FloatingButtons />
     </div>
   );

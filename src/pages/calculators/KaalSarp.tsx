@@ -1,7 +1,6 @@
 
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import useSEO from "@/hooks/useSEO";
 
 const KaalSarp = () => {
@@ -12,12 +11,11 @@ const KaalSarp = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+ 
       <SingleCalculatorTemplate
         title="Kaal Sarp Dosh Calculator 🐍"
         prompt="Find out if you have Kaal Sarp Dosh — when all planets are trapped between Rahu and Ketu — and get remedies to balance its impact."
       />
-      <Footer />
     </div>
   );
 };

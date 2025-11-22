@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const SaadeSaati = () => {
@@ -11,12 +9,10 @@ const SaadeSaati = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <SingleCalculatorTemplate
         title="Sade Sati Calculator 🪐"
         prompt="Find your current Sade Sati period and understand Saturn’s effect on career, health, and growth."
       />
-      <Footer />
     </div>
   );
 };

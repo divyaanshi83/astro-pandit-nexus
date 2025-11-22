@@ -1,7 +1,6 @@
 import useSEO from "@/hooks/useSEO";
 import LuckyCalculatorTemplate from "./templates/LuckyCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 
 export default function LuckyNumber() {
   useSEO(
@@ -11,11 +10,9 @@ export default function LuckyNumber() {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-[80vh]">
         <LuckyCalculatorTemplate type="lucky-number" />
       </main>
-      <Footer />
     </>
   );
 }

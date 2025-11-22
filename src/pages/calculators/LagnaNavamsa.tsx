@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const LagnaNavamsa = () => {
@@ -11,12 +9,11 @@ const LagnaNavamsa = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+ 
       <SingleCalculatorTemplate
         title="Lagna (Ascendant) Calculator ♈"
         prompt="Find your Ascendant sign (Lagna) based on your birth time and location to understand how others perceive you and your life direction."
       />
-      <Footer />
     </div>
   );
 };

@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const PitraDosh = () => {
@@ -11,12 +9,11 @@ const PitraDosh = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+     
       <SingleCalculatorTemplate
         title="Pitra Dosh Calculator 🌑"
         prompt="Check for ancestral karmic dosh (Pitra Dosh) in your horoscope and understand remedies to remove obstacles in life."
       />
-      <Footer />
     </div>
   );
 };

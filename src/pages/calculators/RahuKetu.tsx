@@ -1,6 +1,5 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import useSEO from "@/hooks/useSEO";
 
 const RaahuKetu = () => {
@@ -11,12 +10,11 @@ const RaahuKetu = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+  
       <SingleCalculatorTemplate
         title="Raahu-Ketu Dosh Calculator 🌘"
         prompt="Analyze the Rahu-Ketu dosha in your Kundli and discover remedies for stability, focus, and positive energy."
       />
-      <Footer />
     </div>
   );
 };

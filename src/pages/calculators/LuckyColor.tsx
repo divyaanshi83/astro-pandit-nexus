@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const LuckyColor = () => {
@@ -11,12 +9,12 @@ const LuckyColor = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+
       <SingleCalculatorTemplate
         title="Lucky Color Calculator 🎨"
         prompt="Discover your lucky color based on astrological influences to enhance positivity, luck, and success in your life."
       />
-      <Footer />
+
     </div>
   );
 };

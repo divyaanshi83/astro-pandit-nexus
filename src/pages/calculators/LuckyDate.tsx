@@ -1,6 +1,4 @@
 import LuckyCalculatorTemplate from "./templates/LuckyCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const LuckyDate = () => {
@@ -11,9 +9,7 @@ const LuckyDate = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <LuckyCalculatorTemplate type="lucky-date" />
-      <Footer />
     </div>
   );
 };

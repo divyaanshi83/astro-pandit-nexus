@@ -1,6 +1,4 @@
 import SingleCalculatorTemplate from "@/components/SingleCalculatorTemplate";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import useSEO from "@/hooks/useSEO";
 
 const MoonSign = () => {
@@ -11,12 +9,11 @@ const MoonSign = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+    
       <SingleCalculatorTemplate
         title="Moon Sign Calculator 🌙"
         prompt="Find your Moon Sign (Chandra Rashi) to understand your emotional world, instincts, and mental patterns."
       />
-      <Footer />
     </div>
   );
 };
