@@ -99,11 +99,10 @@ const Panchang = () => {
               <button
                 key={m}
                 onClick={() => setMode(m)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all ${
-                  mode === m
+                className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all ${mode === m
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:bg-accent"
-                }`}
+                  }`}
               >
                 {m.charAt(0).toUpperCase() + m.slice(1)}
               </button>
@@ -197,32 +196,32 @@ const Panchang = () => {
 
                   {/* Choghadiya */}
                   {panchang.choghadiya && (
-  <Card className="mt-8">
-    <CardContent className="p-8">
-      <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
-        Choghadiya
-      </h3>
+                    <Card className="mt-8">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
+                          Choghadiya
+                        </h3>
 
-      <h4 className="text-xl font-semibold mb-2">Day Choghadiya</h4>
-      <div className="space-y-1 mb-6">
-        {panchang.choghadiya.day?.map((slot: any, index: number) => (
-          <p key={index} className="text-muted-foreground">
-            <b>{slot.period}</b> — {slot.type}
-          </p>
-        ))}
-      </div>
+                        <h4 className="text-xl font-semibold mb-2">Day Choghadiya</h4>
+                        <div className="space-y-1 mb-6">
+                          {panchang.choghadiya.day?.map((slot: any, index: number) => (
+                            <p key={index} className="text-muted-foreground">
+                              <b>{slot.period}</b> — {slot.type}
+                            </p>
+                          ))}
+                        </div>
 
-      <h4 className="text-xl font-semibold mb-2">Night Choghadiya</h4>
-      <div className="space-y-1">
-        {panchang.choghadiya.night?.map((slot: any, index: number) => (
-          <p key={index} className="text-muted-foreground">
-            <b>{slot.period}</b> — {slot.type}
-          </p>
-        ))}
-      </div>
-    </CardContent>
-  </Card>
-)}
+                        <h4 className="text-xl font-semibold mb-2">Night Choghadiya</h4>
+                        <div className="space-y-1">
+                          {panchang.choghadiya.night?.map((slot: any, index: number) => (
+                            <p key={index} className="text-muted-foreground">
+                              <b>{slot.period}</b> — {slot.type}
+                            </p>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
 
 
                   {/* Shubh / Ashubh */}
