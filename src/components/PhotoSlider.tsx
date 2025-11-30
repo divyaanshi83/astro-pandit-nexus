@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 interface PhotoSliderProps {
   images: string[];
-  autoPlay?: boolean;   // auto-slide on/off
-  interval?: number;    // time gap between slides (in ms)
+  autoPlay?: boolean;
+  interval?: number;
 }
 
 const PhotoSlider: React.FC<PhotoSliderProps> = ({
@@ -15,34 +15,52 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Go to next image
+  // Touch swipe refs
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
-  // Go to previous image
   const prev = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // Auto-slide logic (with hover pause)
   useEffect(() => {
     if (!autoPlay || isHovered) return;
 
-    timerRef.current = setInterval(() => {
-      next();
-    }, interval);
+    timerRef.current = setInterval(next, interval);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [autoPlay, interval, isHovered, images.length]);
 
+  // Swipe Detection
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current;
+
+    if (distance > 40) next();       // swipe left
+    if (distance < -40) prev();      // swipe right
+  };
+
   return (
     <div
-      className="relative w-full overflow-hidden rounded-xl shadow-lg"
-      onMouseEnter={() => setIsHovered(true)}   // pause when hover
-      onMouseLeave={() => setIsHovered(false)}  // resume when leave
+      className="relative w-full overflow-hidden rounded-xl shadow-xl bg-black"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Slider Images */}
       <div
@@ -50,32 +68,36 @@ const PhotoSlider: React.FC<PhotoSliderProps> = ({
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`slide-${idx}`}
-            className="w-full flex-shrink-0 object-cover"
-              style={{ height: "350px" }}
-          />
+          <div key={idx} className="w-full flex-shrink-0">
+            <img
+              src={img}
+              alt={`slide-${idx}`}
+              className="w-full object-contain md:object-cover"
+              style={{
+                height: "auto",
+                maxHeight: "400px", // desktop height
+              }}
+            />
+          </div>
         ))}
       </div>
 
       {/* Prev/Next Buttons */}
       <button
         onClick={prev}
-        className="absolute top-1/2 left-3 -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full opacity-70 hover:opacity-100 transition"
+        className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full backdrop-blur-md hover:bg-black/70 transition"
       >
         ◀
       </button>
       <button
         onClick={next}
-        className="absolute top-1/2 right-3 -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full opacity-70 hover:opacity-100 transition"
+        className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full backdrop-blur-md hover:bg-black/70 transition"
       >
         ▶
       </button>
 
-      {/* Dots Indicator */}
-      <div className="absolute bottom-4 w-full flex justify-center gap-2">
+      {/* Dots */}
+      <div className="absolute bottom-3 w-full flex justify-center gap-2">
         {images.map((_, idx) => (
           <div
             key={idx}

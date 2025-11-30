@@ -9,13 +9,14 @@ export interface FestivalDetails {
   story: string;
 }
 
-/**
- * Fetch festival details from your backend API
- */
 export async function generateFestivalDetails(festivalName: string): Promise<FestivalDetails> {
-  const res = await fetch(`/api/festival/generate?festival=${encodeURIComponent(festivalName)}`);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+  const res = await fetch(
+    `${API_BASE}/api/festival/generate.php?festival=${encodeURIComponent(festivalName)}`
+  );
+
   if (!res.ok) throw new Error("Failed to fetch festival details");
 
-  const data: FestivalDetails = await res.json();
-  return data;
+  return await res.json();
 }

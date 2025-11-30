@@ -30,6 +30,12 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+
+      {/* 🔥 Hidden SEO H1 for Google Brand Recognition */}
+      <h1 style={{ display: "none" }}>
+        Astro Ashu Pandit – Pandit Ashu Bahuguna | Best Astrologer in India
+      </h1>
+
       <Hero />
       <AboutPandit />
       <ServicesGrid />

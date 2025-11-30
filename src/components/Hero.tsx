@@ -6,32 +6,60 @@ import { Star } from "lucide-react";
 const Hero = () => {
   return (
     <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-      <div 
+      {/* 🔥 Hidden SEO heading for Google */}
+      <h1 style={{ display: "none" }}>
+        Astro Ashu Pandit - Pandit Ashu Bahuguna | Best Astrologer in India | astroashupandit
+      </h1>
+
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/75" />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2 mb-4">
             <Star className="h-6 w-6 text-accent fill-accent" />
             <span className="text-primary font-semibold text-lg">Expert Astrologer</span>
           </div>
-          
+
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-foreground mb-6 leading-tight">
-            Pandit Ashu Bahuguna
+            Astro Ashu Pandit (Pandit Ashu Bahuguna)
           </h1>
-          
+
+
+          {/* 🌐 Toggle Switch – Dark Theme */}
+          <div className="mb-6 flex items-center gap-3">
+            <span className="text-sm font-medium text-black">Astro Ashu</span>
+
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                className="sr-only"
+                onChange={() => window.location.href = "https://shriramjyotishsadan.in"}
+              />
+
+              <div className="w-12 h-6 bg-gray-700 rounded-full peer transition peer-checked:bg-orange-600 shadow-inner">
+                <div className="absolute left-1 top-1 w-4 h-4 bg-gray-200 rounded-full shadow-md transition peer-checked:translate-x-6 peer-checked:bg-white" />
+              </div>
+            </label>
+
+            <span className="text-sm font-medium text-black">Shriram</span>
+          </div>
+
+
+
           <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            35+ Years of Vedic Astrology Experience
+            Astro Ashu Pandit | 35+ Years of Vedic Astrology Experience
           </p>
-          
+
+
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
             Guiding 50,000+ satisfied clients towards prosperity, peace, and spiritual growth through authentic Vedic wisdom and personalized consultations.
           </p>
-          
+
           <div className="flex flex-wrap gap-4 mb-8">
             <Link to="/horoscope">
               <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-white font-semibold">
@@ -44,7 +72,7 @@ const Hero = () => {
               </Button>
             </Link>
           </div>
-          
+
           <div className="flex flex-wrap gap-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />

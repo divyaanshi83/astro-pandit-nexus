@@ -236,6 +236,27 @@ const App = () => (
             {/* 🚫 Fallback */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Pandit Ashu Bahuguna",
+  "image": "https://astroashupandit.com/ashu-pandit.jpg",
+  "url": "https://astroashupandit.com",
+  "description": "India's leading astrologer with 35+ years of experience in Kundli, Horoscope & Jyotish services.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Muzaffarnagar",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://facebook.com",
+    "https://instagram.com"
+  ]
+})}
+</script>
+
 
           <ChatBox />
         </TooltipProvider>

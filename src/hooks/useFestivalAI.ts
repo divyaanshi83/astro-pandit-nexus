@@ -1,4 +1,3 @@
-// src/hooks/useFestivalAI.ts
 import { useEffect, useState } from "react";
 import type { FestivalDetails } from "@/types/festival";
 
@@ -10,36 +9,21 @@ export default function useFestivalAI(festivalName: string) {
   useEffect(() => {
     if (!festivalName) return;
 
-    const fetchAIData = async () => {
+    const fetchData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        // 🔥 IMPORTANT: updated to PHP endpoint
-        const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
-const res = await fetch(`${API_BASE}/api/festival/generate?festival=${encodeURIComponent(festivalName)}`);
+        const API_BASE = import.meta.env.VITE_API_BASE_URL;
+        const res = await fetch(
+  `${API_BASE}/api/festival/generate.php?festival=${encodeURIComponent(festivalName)}`
+);
+
 
         const json = await res.json();
+        if (!json.success) throw new Error(json.error || "Fetch failed");
 
-        if (!res.ok) throw new Error(json.error || "Failed to fetch festival info");
-
-        // The PHP backend returns entire content as a single string
-        const content = json.choices?.[0]?.message?.content || "";
-
-        // Your existing format
-        const lines = content.split("\n").filter(Boolean);
-
-        const fd: FestivalDetails = {
-          name: festivalName,
-          description: lines[0] || "",
-          puja: lines[1] || "",
-          time: lines[2] || "",
-          foods: lines[3] || "",
-          reason: lines[4] || "",
-          story: lines[5] || "",
-        };
-
-        setDetails(fd);
+        setDetails(json.festival);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -47,7 +31,7 @@ const res = await fetch(`${API_BASE}/api/festival/generate?festival=${encodeURIC
       }
     };
 
-    fetchAIData();
+    fetchData();
   }, [festivalName]);
 
   return { details, loading, error };
