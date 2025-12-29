@@ -8,26 +8,26 @@ import holiImage from "@/assets/holi.jpg";
 
 const festivals = [
   {
-    name: "Diwali 2025",
-    date: "October 20, 2025",
+    name: "Diwali 2026",
+    date: "11 Nov, 2026",
     image: diwaliImage,
     description: "Festival of Lights celebrating victory of light over darkness"
   },
   {
-    name: "Dussehra 2025",
-    date: "October 2, 2025",
+    name: "Dussehra 2026",
+    date: "20 Oct, 2026",
     image: dussehraImage,
     description: "Victory of good over evil, Lord Rama's triumph over Ravana"
   },
   {
-    name: "Navratri 2025",
-    date: "September 28 - October 2, 2025",
+    name: "Navratri 2026",
+    date: "19 Mar, 2026 - Fri, 27 Mar, 2026",
     image: navratriImage,
     description: "Nine nights of Goddess Durga worship and celebration"
   },
   {
     name: "Holi 2026",
-    date: "March 2026",
+    date: "4 March 2026",
     image: holiImage,
     description: "Festival of colors celebrating the arrival of spring"
   }

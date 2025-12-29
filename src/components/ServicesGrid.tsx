@@ -32,7 +32,7 @@ const services = [
     color: "text-primary"
   },
   {
-    title: "Shubh Muhurat 2025",
+    title: "Shubh Muhurat 2026",
     description: "Auspicious timings",
     icon: Calendar,
     link: "/shubh-muhurat",

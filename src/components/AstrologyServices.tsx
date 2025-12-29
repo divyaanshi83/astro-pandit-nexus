@@ -21,9 +21,9 @@ const AstrologyServices: React.FC = () => {
     {
       id: 2,
       title: "Maanglik दोष निवारण",
-      image: "/images/maanglikDosh.jpg",
+      image: "/images/manglikDosh.jpg",
       description: "जानिए मंगलीक दोष के प्रभाव और निवारण के उपाय।",
-      link: "/maanglik-dosh",
+      link: "/manglik-dosh",
     },
     {
       id: 3,

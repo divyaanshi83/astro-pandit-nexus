@@ -136,7 +136,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          
+
 
           <Routes>
             {/* 🌟 Main Pages */}
@@ -171,34 +171,34 @@ const App = () => (
             <Route path="/numerology" element={<Numerology />} />
             <Route path="/vaastu-dosh" element={<VaastuDosh />} />
 
-              {/* Dynamic Horoscope Route */}
-              <Route path="/horoscope/:signDay" element={<HoroscopeWrapper />} />
+            {/* Dynamic Horoscope Route */}
+            <Route path="/horoscope/:signDay" element={<HoroscopeWrapper />} />
 
             {/* 🔮 Single Input Calculators */}
-<Route path="/calculator/nakshatra" element={<Nakshatra />} />
-<Route path="/calculator/dasha" element={<Dasha />} />
-<Route path="/calculator/mangal-dosh" element={<MangalDosh />} />
-<Route path="/calculator/kaal-sarp" element={<KaalSarp />} />
-<Route path="/calculator/pitra-dosh" element={<PitraDosh />} />
-<Route path="/calculator/raahu-ketu" element={<RaahuKetu />} />
-<Route path="/calculator/unlucky-color" element={<UnluckyColor />} />
-<Route path="/calculator/unlucky-date" element={<UnluckyDate />} />
-<Route path="/calculator/sade-saati" element={<SaadeSaati />} />
-<Route path="/calculator/fav-alphabet" element={<FavAlphabet />} />
-<Route path="/calculator/kundali" element={<Kundali />} />
-<Route path="/calculator/laal-kitab" element={<LaalKitab />} />
-<Route path="/calculator/lagna" element={<Lagna />} />
-<Route path="/calculator/lucky-color" element={<LuckyColor />} />
-<Route path="/calculator/lucky-date" element={<LuckyDate />} />
-<Route path="/calculator/lucky-number" element={<LuckyNumber />} />
-<Route path="/calculator/lucky-rudraksha" element={<LuckyRudraksha />} />
-<Route path="/calculator/lucky-vehicle-number" element={<LuckyVehicleNumber />} />
-<Route path="/calculator/moon-sign" element={<MoonSign />} />
+            <Route path="/calculator/nakshatra" element={<Nakshatra />} />
+            <Route path="/calculator/dasha" element={<Dasha />} />
+            <Route path="/calculator/mangal-dosh" element={<MangalDosh />} />
+            <Route path="/calculator/kaal-sarp" element={<KaalSarp />} />
+            <Route path="/calculator/pitra-dosh" element={<PitraDosh />} />
+            <Route path="/calculator/raahu-ketu" element={<RaahuKetu />} />
+            <Route path="/calculator/unlucky-color" element={<UnluckyColor />} />
+            <Route path="/calculator/unlucky-date" element={<UnluckyDate />} />
+            <Route path="/calculator/sade-saati" element={<SaadeSaati />} />
+            <Route path="/calculator/fav-alphabet" element={<FavAlphabet />} />
+            <Route path="/calculator/kundali" element={<Kundali />} />
+            <Route path="/calculator/laal-kitab" element={<LaalKitab />} />
+            <Route path="/calculator/lagna" element={<Lagna />} />
+            <Route path="/calculator/lucky-color" element={<LuckyColor />} />
+            <Route path="/calculator/lucky-date" element={<LuckyDate />} />
+            <Route path="/calculator/lucky-number" element={<LuckyNumber />} />
+            <Route path="/calculator/lucky-rudraksha" element={<LuckyRudraksha />} />
+            <Route path="/calculator/lucky-vehicle-number" element={<LuckyVehicleNumber />} />
+            <Route path="/calculator/moon-sign" element={<MoonSign />} />
 
-{/* 💞 Dual Input Calculators */}
-<Route path="/calculator/love" element={<Love />} />
-<Route path="/calculator/flame" element={<Flame />} />
-<Route path="/calculator/match-making" element={<MatchMaking />} />
+            {/* 💞 Dual Input Calculators */}
+            <Route path="/calculator/love" element={<Love />} />
+            <Route path="/calculator/flame" element={<Flame />} />
+            <Route path="/calculator/match-making" element={<MatchMaking />} />
 
 
 
@@ -237,25 +237,25 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Pandit Ashu Bahuguna",
-  "image": "https://astroashupandit.com/ashu-pandit.jpg",
-  "url": "https://astroashupandit.com",
-  "description": "India's leading astrologer with 35+ years of experience in Kundli, Horoscope & Jyotish services.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Muzaffarnagar",
-    "addressRegion": "Uttar Pradesh",
-    "addressCountry": "IN"
-  },
-  "sameAs": [
-    "https://facebook.com",
-    "https://instagram.com"
-  ]
-})}
-</script>
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Pandit Ashu Bahuguna",
+              "image": "https://astroashupandit.com/ashu-pandit.jpg",
+              "url": "https://astroashupandit.com",
+              "description": "India's leading astrologer with 35+ years of experience in Kundli, Horoscope & Jyotish services.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Muzaffarnagar",
+                "addressRegion": "Uttar Pradesh",
+                "addressCountry": "IN"
+              },
+              "sameAs": [
+                "https://facebook.com",
+                "https://instagram.com"
+              ]
+            })}
+          </script>
 
 
           <ChatBox />

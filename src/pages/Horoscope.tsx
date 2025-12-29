@@ -4,18 +4,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 
 const zodiacSigns = [
-  { name: "Aries", symbol: "♈", dates: "Mar 21 - Apr 19" },
-  { name: "Taurus", symbol: "♉", dates: "Apr 20 - May 20" },
-  { name: "Gemini", symbol: "♊", dates: "May 21 - Jun 20" },
-  { name: "Cancer", symbol: "♋", dates: "Jun 21 - Jul 22" },
-  { name: "Leo", symbol: "♌", dates: "Jul 23 - Aug 22" },
-  { name: "Virgo", symbol: "♍", dates: "Aug 23 - Sep 22" },
-  { name: "Libra", symbol: "♎", dates: "Sep 23 - Oct 22" },
-  { name: "Scorpio", symbol: "♏", dates: "Oct 23 - Nov 21" },
-  { name: "Sagittarius", symbol: "♐", dates: "Nov 22 - Dec 21" },
-  { name: "Capricorn", symbol: "♑", dates: "Dec 22 - Jan 19" },
-  { name: "Aquarius", symbol: "♒", dates: "Jan 20 - Feb 18" },
-  { name: "Pisces", symbol: "♓", dates: "Feb 19 - Mar 20" },
+  { name: "Aries", symbol: "♈"},
+  { name: "Taurus", symbol: "♉"},
+  { name: "Gemini", symbol: "♊"},
+  { name: "Cancer", symbol: "♋"},
+  { name: "Leo", symbol: "♌"},
+  { name: "Virgo", symbol: "♍"},
+  { name: "Libra", symbol: "♎"},
+  { name: "Scorpio", symbol: "♏"},
+  { name: "Sagittarius", symbol: "♐"},
+  { name: "Capricorn", symbol: "♑"},
+  { name: "Aquarius", symbol: "♒"},
+  { name: "Pisces", symbol: "♓"},
 ];
 
 const Horoscope = () => {
@@ -36,9 +36,8 @@ const Horoscope = () => {
 
           {/* Tabs for Daily / Weekly */}
           <Tabs defaultValue="daily" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-1 mb-8">
               <TabsTrigger value="daily">Daily</TabsTrigger>
-              <TabsTrigger value="weekly">Weekly</TabsTrigger>
             </TabsList>
 
             {/* Daily Horoscope List */}
@@ -55,9 +54,6 @@ const Horoscope = () => {
                         <h3 className="text-xl font-playfair font-semibold mb-1 text-foreground">
                           {sign.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {sign.dates}
-                        </p>
                         <p className="text-muted-foreground">
                           Click to view today’s horoscope →
                         </p>
@@ -81,9 +77,6 @@ const Horoscope = () => {
                       <h3 className="text-xl font-playfair font-semibold mb-1 text-foreground">
                         {sign.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {sign.dates}
-                      </p>
                       <p className="text-muted-foreground">
                         This week brings growth, introspection, and balance.
                       </p>
