@@ -35,7 +35,7 @@ const SingleCalculatorTemplate = ({ title, prompt }: CalculatorTemplateProps) =>
       setResult(null);
 
       // ✅ Call Express API instead of Netlify function
-      const res = await fetch("/api/openai", {
+      const res = await fetch("/api/openai.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
