@@ -23,7 +23,8 @@ import ShubhMuhurat from "./pages/ShubhMuhurat";
 import MuhuratDates from "@/pages/MuhuratDates";
 import MuhuratDetail from "@/pages/MuhuratDetail";
 import About from "./pages/About";
-//import Contact from "./pages/Contact";
+
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import GalleryPage from "@/pages/GalleryPage";
 
@@ -150,6 +151,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/kundli-milan" element={<KundliMilan />} />
             <Route path="/calculators" element={<Calculators />} />
+
+            <Route path="/contact" element={<Contact />} />
 
             {/* 🌸 Services */}
             <Route path="/sukh-samridhi" element={<SukhSamridhi />} />

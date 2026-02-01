@@ -9,32 +9,46 @@ const ChatBox = () => {
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    if (!input.trim() || !canChat) return;
-    addMessage({ role: "user", content: input });
+    if (!input.trim() || !canChat || loading) return;
 
-    setLoading(true);
+    const userText = input;
+
+    // show user message immediately
+    addMessage({ role: "user", content: userText });
     setInput("");
+    setLoading(true);
 
     try {
-      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      const res = await fetch("/api/chat.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [
-            { role: "system", content: "You are an expert astrologer from ShriRamJyotishSadan giving clear, calm, spiritual guidance." },
-            { role: "user", content: input },
-          ],
+          message: userText,
         }),
       });
+
+      if (!res.ok) throw new Error("Network error");
+
       const data = await res.json();
-      const reply = data.choices[0].message.content;
-      addMessage({ role: "assistant", content: reply });
-    } catch {
-      addMessage({ role: "assistant", content: "⚠️ Sorry, there was a problem connecting to the astrologer. Try again later." });
+
+      // OpenAI standard response handling
+      const reply =
+        data.reply ||
+        data.choices?.[0]?.message?.content ||
+        "🙏 Please ask again with more clarity.";
+
+      addMessage({
+        role: "assistant",
+        content: reply,
+      });
+    } catch (error) {
+      addMessage({
+        role: "assistant",
+        content:
+          "⚠️ Sorry, there was a problem connecting to the astrologer. Try again later.",
+      });
     } finally {
       setLoading(false);
     }
@@ -51,41 +65,60 @@ const ChatBox = () => {
         💬 Chat with Astrologer
       </Button>
 
-
-
       {/* Chat Box */}
       {isOpen && (
-        <div className="fixed bottom-20 right-5 w-80 bg-white border rounded-2xl shadow-lg flex flex-col overflow-hidden">
-
-          {/* Header Section */}
+        <div
+          className="fixed bottom-20 right-5 w-80 bg-white border rounded-2xl shadow-lg flex flex-col overflow-hidden"
+          style={{ zIndex: 9999 }}
+        >
+          {/* Header */}
           <div className="flex items-center gap-2 bg-gradient-to-r from-blue-700 to-indigo-600 text-white p-3 rounded-t-2xl">
-            {/* Circular Logo (replace with your own image later) */}
             <img
-              src="/team-icon.png"  // ⬅️ Place your image here (or placeholder)
+              src="/team-icon.png"
               alt="Astrologer"
               className="w-8 h-8 rounded-full border border-white"
             />
             <div className="flex flex-col">
-              <span className="font-semibold text-sm">From ShriRamJyotishSadan Team</span>
-              <span className="text-xs text-blue-100">Online Astrologer Chat</span>
+              <span className="font-semibold text-sm">
+                From ShriRamJyotishSadan Team
+              </span>
+              <span className="text-xs text-blue-100">
+                Online Astrologer Chat
+              </span>
             </div>
           </div>
 
-          {/* Chat Messages */}
-          <div className="flex-1 p-2 overflow-y-auto max-h-80">
+          {/* Messages */}
+          <div className="flex-1 p-2 overflow-y-auto max-h-80 bg-white">
             {messages.map((msg, i) => (
-              <div key={i} className={`mb-2 ${msg.role === "user" ? "text-right" : "text-left"}`}>
+              <div
+                key={i}
+                className={`mb-2 ${
+                  msg.role === "user" ? "text-right" : "text-left"
+                }`}
+              >
                 <span
-                  className={`inline-block px-3 py-2 rounded-lg text-sm ${msg.role === "user" ? "bg-blue-100 text-gray-800" : "bg-gray-100 text-gray-800"
-                    }`}
+                  className={`inline-block px-3 py-2 rounded-lg text-sm max-w-[90%] ${
+                    msg.role === "user"
+                      ? "bg-blue-100 text-gray-800"
+                      : "bg-gray-100 text-gray-800"
+                  }`}
                 >
                   {msg.content}
                 </span>
               </div>
             ))}
+
+            {loading && (
+              <div className="text-left mb-2">
+                <span className="inline-block px-3 py-2 rounded-lg text-sm bg-gray-100 text-gray-500 italic">
+                  Astrologer is typing…
+                </span>
+              </div>
+            )}
           </div>
 
-          {/* Input / Payment Area */}
+          {/* Input / Payment */}
           {!canChat ? (
             <div className="p-3 text-center bg-gray-50 border-t">
               <p className="text-sm text-gray-600 mb-2">
@@ -100,12 +133,17 @@ const ChatBox = () => {
               <input
                 type="text"
                 value={input}
-                onChange={e => setInput(e.target.value)}
+                onChange={(e) => setInput(e.target.value)}
                 className="flex-1 p-2 border-none outline-none text-sm"
                 placeholder="Ask your question..."
-                onKeyDown={e => e.key === "Enter" && sendMessage()}
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                disabled={loading}
               />
-              <Button onClick={sendMessage} disabled={loading} className="rounded-none text-sm">
+              <Button
+                onClick={sendMessage}
+                disabled={loading}
+                className="rounded-none text-sm"
+              >
                 {loading ? "..." : "Send"}
               </Button>
             </div>
